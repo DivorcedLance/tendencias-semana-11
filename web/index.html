@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cómo los Large Language Models están reescribiendo los Sistemas de Información Empresariales — artículo visual del Grupo 2." />
+  <title>LLM en Sistemas de Información · Blog visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">LLM<span class="logo-accent">×</span>SI</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#problema">Problema</a>
+        <a href="#anatomia">Anatomía</a>
+        <a href="#evolucion">Evolución</a>
+        <a href="#integracion">Integración</a>
+        <a href="#caso">Caso</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#futuro">Futuro</a>
+      </nav>
+      <a href="#contacto" class="nav-cta">Empezar →</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============== HERO ============== -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-pulse"></span>
+          Grupo 2 · Tendencias en SI · 2026
+        </div>
+        <h1 class="hero-title">
+          <span class="reveal-line">Los LLM están</span>
+          <span class="reveal-line gradient-text">reescribiendo</span>
+          <span class="reveal-line">los sistemas</span>
+          <span class="reveal-line gradient-text-2">de información.</span>
+        </h1>
+        <p class="hero-sub reveal">
+          Una mirada visual a cómo los modelos de lenguaje de gran tamaño
+          están transformando ERP, CRM, SCM, BI, gestión documental y
+          atención al cliente dentro de las organizaciones modernas.
+        </p>
+        <div class="hero-cta reveal">
+          <a href="#problema" class="btn btn-primary">Leer artículo</a>
+          <a href="#caso" class="btn btn-ghost">Ver caso real →</a>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="scroll-line"><div class="scroll-dot"></div></div>
+        </div>
+      </div>
+
+      <svg class="hero-mesh" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <radialGradient id="meshGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="90" fill="url(#meshGrad)"/>
+        <g stroke="rgba(255,255,255,0.12)" stroke-width="0.5" fill="none">
+          <ellipse cx="100" cy="100" rx="80" ry="30"/>
+          <ellipse cx="100" cy="100" rx="80" ry="30" transform="rotate(60 100 100)"/>
+          <ellipse cx="100" cy="100" rx="80" ry="30" transform="rotate(120 100 100)"/>
+        </g>
+        <g fill="#fff">
+          <circle cx="100" cy="20" r="3"/>
+          <circle cx="170" cy="60" r="2"/>
+          <circle cx="170" cy="140" r="2.5"/>
+          <circle cx="100" cy="180" r="3"/>
+          <circle cx="30" cy="140" r="2"/>
+          <circle cx="30" cy="60" r="2.5"/>
+        </g>
+      </svg>
+    </section>
+
+    <!-- ============== INTRO / PROBLEMA ============== -->
+    <section class="section" id="problema">
+      <div class="container narrow">
+        <div class="eyebrow reveal">El planteamiento</div>
+        <h2 class="section-title reveal">
+          Las empresas hablan en <em>documentos</em>,
+          no en <em>filas SQL</em>.
+        </h2>
+        <p class="lead reveal">
+          Más del <strong>80% de los datos empresariales</strong> viven como
+          texto, audio o imágenes: contratos, tickets, correos, reportes,
+          chats. Los ERP, CRM y BI tradicionales fueron diseñados para
+          procesar tablas y formularios. Esa es la grieta por donde se
+          cuelan los LLM.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="split">
+          <div class="reveal">
+            <div class="card stat">
+              <div class="stat-num" data-count="80" data-suffix="%">0%</div>
+              <div class="stat-label">de los datos empresariales son no estructurados.</div>
+              <div class="stat-bar"><div class="stat-bar-fill" data-fill="80"></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="card stat">
+              <div class="stat-num" data-count="25.2" data-suffix=" B USD" data-decimals="1">0</div>
+              <div class="stat-label">invertidos en GenAI empresarial solo en 2023 (8× vs 2022).</div>
+              <div class="stat-bar"><div class="stat-bar-fill" data-fill="92"></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="card stat">
+              <div class="stat-num" data-count="35" data-suffix="%">0%</div>
+              <div class="stat-label">de los proyectos de IA generativa se quedan en piloto tras 2 años.</div>
+              <div class="stat-bar"><div class="stat-bar-fill" data-fill="35"></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="card stat">
+              <div class="stat-num" data-count="3" data-suffix="×">0×</div>
+              <div class="stat-label">más rápido en configurar asistentes conversacionales con LLM.</div>
+              <div class="stat-bar"><div class="stat-bar-fill" data-fill="75"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ANATOMÍA DE UN LLM ============== -->
+    <section class="section section-alt" id="anatomia">
+      <div class="container">
+        <div class="eyebrow reveal">Anatomía</div>
+        <h2 class="section-title reveal">¿Qué hay dentro de un LLM?</h2>
+        <p class="section-lead reveal">
+          Cuatro bloques fundamentales. Conectados en cadena,
+          convierten una pregunta en una respuesta plausible.
+        </p>
+
+        <div class="anatomy">
+          <div class="anat-card reveal" data-i="1">
+            <div class="anat-num">01</div>
+            <svg class="anat-icon" viewBox="0 0 60 60" aria-hidden="true">
+              <rect x="6" y="14" width="48" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="14" y1="22" x2="46" y2="22" stroke="currentColor" stroke-width="2"/>
+              <line x1="14" y1="30" x2="40" y2="30" stroke="currentColor" stroke-width="2" opacity="0.6"/>
+              <line x1="14" y1="38" x2="36" y2="38" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            </svg>
+            <h3>Tokens</h3>
+            <p>El texto se rompe en piezas discretas. Cada token es un número en un vocabulario de 50–200k entradas.</p>
+          </div>
+
+          <div class="anat-arrow" aria-hidden="true">→</div>
+
+          <div class="anat-card reveal" data-i="2">
+            <div class="anat-num">02</div>
+            <svg class="anat-icon" viewBox="0 0 60 60" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="30" cy="30" r="8"/>
+                <circle cx="10" cy="15" r="3"/>
+                <circle cx="50" cy="15" r="3"/>
+                <circle cx="10" cy="45" r="3"/>
+                <circle cx="50" cy="45" r="3"/>
+                <circle cx="30" cy="8" r="3"/>
+                <circle cx="30" cy="52" r="3"/>
+                <line x1="30" y1="30" x2="10" y2="15"/>
+                <line x1="30" y1="30" x2="50" y2="15"/>
+                <line x1="30" y1="30" x2="10" y2="45"/>
+                <line x1="30" y1="30" x2="50" y2="45"/>
+                <line x1="30" y1="30" x2="30" y2="8"/>
+                <line x1="30" y1="30" x2="30" y2="52"/>
+              </g>
+            </svg>
+            <h3>Embeddings</h3>
+            <p>Cada token se mapea a un vector denso (768–12 288 dimensiones) que captura su significado contextual.</p>
+          </div>
+
+          <div class="anat-arrow" aria-hidden="true">→</div>
+
+          <div class="anat-card reveal" data-i="3">
+            <div class="anat-num">03</div>
+            <svg class="anat-icon" viewBox="0 0 60 60" aria-hidden="true">
+              <g fill="currentColor">
+                <rect x="6" y="10" width="6" height="6" opacity="0.4"/>
+                <rect x="14" y="10" width="6" height="6" opacity="0.7"/>
+                <rect x="22" y="10" width="6" height="6"/>
+                <rect x="30" y="10" width="6" height="6" opacity="0.7"/>
+                <rect x="38" y="10" width="6" height="6" opacity="0.4"/>
+                <rect x="6" y="22" width="6" height="6" opacity="0.6"/>
+                <rect x="14" y="22" width="6" height="6"/>
+                <rect x="22" y="22" width="6" height="6" opacity="0.8"/>
+                <rect x="30" y="22" width="6" height="6"/>
+                <rect x="38" y="22" width="6" height="6" opacity="0.6"/>
+                <rect x="6" y="34" width="6" height="6"/>
+                <rect x="14" y="34" width="6" height="6" opacity="0.8"/>
+                <rect x="22" y="34" width="6" height="6" opacity="0.5"/>
+                <rect x="30" y="34" width="6" height="6" opacity="0.8"/>
+                <rect x="38" y="34" width="6" height="6"/>
+                <rect x="6" y="46" width="6" height="6" opacity="0.5"/>
+                <rect x="14" y="46" width="6" height="6" opacity="0.9"/>
+                <rect x="22" y="46" width="6" height="6" opacity="0.6"/>
+                <rect x="30" y="46" width="6" height="6" opacity="0.9"/>
+                <rect x="38" y="46" width="6" height="6" opacity="0.5"/>
+              </g>
+            </svg>
+            <h3>Self-attention</h3>
+            <p>El corazón del transformer. Cada token “mira” a los demás y decide cuáles importan para el siguiente.</p>
+          </div>
+
+          <div class="anat-arrow" aria-hidden="true">→</div>
+
+          <div class="anat-card reveal" data-i="4">
+            <div class="anat-num">04</div>
+            <svg class="anat-icon" viewBox="0 0 60 60" aria-hidden="true">
+              <path d="M10 50 Q 15 10, 30 30 T 50 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="10" cy="50" r="3" fill="currentColor"/>
+              <circle cx="50" cy="10" r="3" fill="currentColor"/>
+              <circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.6"/>
+            </svg>
+            <h3>Predicción</h3>
+            <p>Token a token, el modelo calcula probabilidades y arma una respuesta. Muestreo, top-p, temperatura… magia controlada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== EVOLUCIÓN ============== -->
+    <section class="section" id="evolucion">
+      <div class="container">
+        <div class="eyebrow reveal">Evolución</div>
+        <h2 class="section-title reveal">De los datos a las decisiones autónomas</h2>
+        <p class="section-lead reveal">
+          Cinco décadas comprimidas en una línea. Cada salto representa
+          un cambio en <em>qué puede hacer</em> un sistema, no solo en
+          cuántos datos procesa.
+        </p>
+
+        <ol class="timeline">
+          <li class="tl-item reveal" data-era="60–90">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1960–90</div>
+            <div class="tl-name">Transaccional</div>
+            <p>ERP, CRM, SCM. El sistema registra. <strong>Reglas + SQL.</strong></p>
+            <div class="tl-chart">
+              <div class="tl-bar" style="--h: 18%"></div>
+              <div class="tl-bar" style="--h: 25%"></div>
+              <div class="tl-bar" style="--h: 32%"></div>
+              <div class="tl-bar" style="--h: 40%"></div>
+            </div>
+          </li>
+          <li class="tl-item reveal" data-era="90–10">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1990–2010</div>
+            <div class="tl-name">Analítico</div>
+            <p>BI, OLAP, data warehouse. <strong>Preguntar sobre el pasado.</strong></p>
+            <div class="tl-chart">
+              <div class="tl-bar" style="--h: 30%"></div>
+              <div class="tl-bar" style="--h: 45%"></div>
+              <div class="tl-bar" style="--h: 55%"></div>
+              <div class="tl-bar" style="--h: 60%"></div>
+            </div>
+          </li>
+          <li class="tl-item reveal" data-era="10–20">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2010–20</div>
+            <div class="tl-name">Inteligente</div>
+            <p>Machine learning. <strong>Predecir y clasificar</strong> a escala.</p>
+            <div class="tl-chart">
+              <div class="tl-bar" style="--h: 50%"></div>
+              <div class="tl-bar" style="--h: 62%"></div>
+              <div class="tl-bar" style="--h: 70%"></div>
+              <div class="tl-bar" style="--h: 75%"></div>
+            </div>
+          </li>
+          <li class="tl-item tl-item-active reveal" data-era="20–">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2020–</div>
+            <div class="tl-name">Generativo</div>
+            <p>ChatGPT, Claude, Gemini, RAG. <strong>Crear y conversar.</strong></p>
+            <div class="tl-chart">
+              <div class="tl-bar" style="--h: 70%"></div>
+              <div class="tl-bar" style="--h: 82%"></div>
+              <div class="tl-bar" style="--h: 90%"></div>
+              <div class="tl-bar" style="--h: 95%"></div>
+            </div>
+          </li>
+          <li class="tl-item tl-item-future reveal" data-era="futuro">
+            <div class="tl-dot"></div>
+            <div class="tl-year">Futuro</div>
+            <div class="tl-name">Autónomo</div>
+            <p>Agentes que <strong>ejecutan tareas</strong> sin esperarnos.</p>
+            <div class="tl-chart">
+              <div class="tl-bar" style="--h: 85%"></div>
+              <div class="tl-bar" style="--h: 92%"></div>
+              <div class="tl-bar" style="--h: 98%"></div>
+              <div class="tl-bar" style="--h: 100%"></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============== INTEGRACIÓN ============== -->
+    <section class="section section-alt" id="integracion">
+      <div class="container">
+        <div class="eyebrow reveal">Aplicaciones</div>
+        <h2 class="section-title reveal">Dónde se enchufan los LLM</h2>
+        <p class="section-lead reveal">
+          Siete puntos de contacto críticos entre los LLM y los sistemas
+          de información empresariales. Cada tarjeta resume el caso de uso
+          y la métrica esperada.
+        </p>
+
+        <div class="grid-3">
+          <article class="feat reveal" style="--c1:#6366f1;--c2:#8b5cf6">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <rect x="3" y="6" width="26" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="3" y1="12" x2="29" y2="12" stroke="currentColor" stroke-width="2"/>
+                <circle cx="7" cy="9" r="1" fill="currentColor"/>
+                <circle cx="11" cy="9" r="1" fill="currentColor"/>
+                <rect x="7" y="16" width="8" height="2" fill="currentColor" opacity="0.6"/>
+                <rect x="7" y="20" width="14" height="2" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </div>
+            <h3>ERP</h3>
+            <p>«¿Cuál fue el margen del Q3 en la región sur?». Lenguaje natural sobre datos estructurados.</p>
+            <div class="feat-tag">SAP · Oracle · Dynamics</div>
+          </article>
+
+          <article class="feat reveal" style="--c1:#ec4899;--c2:#f97316">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 27 Q 5 18, 16 18 Q 27 18, 27 27" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>CRM</h3>
+            <p>Atención 24/7, resumen de reuniones, scoring de leads, borradores personalizados por cliente.</p>
+            <div class="feat-tag">Salesforce · HubSpot · Zoho</div>
+          </article>
+
+          <article class="feat reveal" style="--c1:#10b981;--c2:#06b6d4">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M4 16 L12 16 L16 8 L20 24 L24 16 L28 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>SCM</h3>
+            <p>Lectura de noticias, planes de demanda explicables y asistentes para RFPs con proveedores.</p>
+            <div class="feat-tag">SAP IBP · Blue Yonder</div>
+          </article>
+
+          <article class="feat reveal" style="--c1:#f59e0b;--c2:#ef4444">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <rect x="5" y="18" width="4" height="10" fill="currentColor" opacity="0.6"/>
+                <rect x="13" y="12" width="4" height="16" fill="currentColor"/>
+                <rect x="21" y="6" width="4" height="22" fill="currentColor" opacity="0.8"/>
+              </svg>
+            </div>
+            <h3>BI</h3>
+            <p>Consultas en lenguaje natural, generación de insights y storytelling de datos automático.</p>
+            <div class="feat-tag">Power BI · Tableau · Looker</div>
+          </article>
+
+          <article class="feat reveal" style="--c1:#3b82f6;--c2:#06b6d4">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M6 4 L22 4 L26 8 L26 28 L6 28 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M22 4 L22 8 L26 8" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="10" y1="14" x2="22" y2="14" stroke="currentColor" stroke-width="2" opacity="0.6"/>
+                <line x1="10" y1="18" x2="22" y2="18" stroke="currentColor" stroke-width="2" opacity="0.6"/>
+                <line x1="10" y1="22" x2="18" y2="22" stroke="currentColor" stroke-width="2" opacity="0.6"/>
+              </svg>
+            </div>
+            <h3>Documental</h3>
+            <p>Búsqueda semántica, RAG con citas verificables, extracción de entidades y resumen ejecutivo.</p>
+            <div class="feat-tag">SharePoint · Confluence</div>
+          </article>
+
+          <article class="feat reveal" style="--c1:#8b5cf6;--c2:#ec4899">
+            <div class="feat-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 14 Q 12 18, 16 14 T 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3>Mesa de ayuda</h3>
+            <p>Clasificación de tickets, resolución autónoma de nivel 1 y generación de knowledge base.</p>
+            <div class="feat-tag">ServiceNow · Zendesk</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CASO VODAFONE ============== -->
+    <section class="section" id="caso">
+      <div class="container">
+        <div class="eyebrow reveal">Caso de uso</div>
+        <h2 class="section-title reveal">Vodafone Ireland × IBM watsonx</h2>
+        <p class="section-lead reveal">
+          TOBi, el asistente virtual de Vodafone Ireland, atendía a
+          millones de clientes con un modelo clásico de NLU. La tasa de
+          resolución estaba <strong>estancada en 35%</strong>. Tras migrar
+          a <strong>watsonx Assistant</strong> con capacidades generativas,
+          los resultados cambiaron de inmediato.
+        </p>
+
+        <div class="case">
+          <div class="case-stat reveal">
+            <div class="case-num" data-count="3" data-suffix="×" data-decimals="0">0×</div>
+            <div class="case-label">más rápido creando nuevos journeys conversacionales</div>
+            <svg class="case-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points="0,28 20,22 40,18 60,12 80,6 100,2" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="case-stat reveal">
+            <div class="case-num" data-count="20" data-prefix="+" data-suffix="%">0%</div>
+            <div class="case-label">mejora en la tasa de contención del bot</div>
+            <svg class="case-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points="0,24 25,20 50,14 75,8 100,4" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="case-stat reveal">
+            <div class="case-num" data-count="80" data-prefix="−" data-suffix="%">0%</div>
+            <div class="case-label">menos utterances malinterpretadas</div>
+            <svg class="case-spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points="0,4 25,10 50,18 75,24 100,28" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="quote-block reveal">
+          <svg class="quote-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M6 22 Q 6 10, 18 10 L 18 14 Q 10 14, 10 22 Z M 18 22 Q 18 10, 30 10 L 30 14 Q 22 14, 22 22 Z" fill="currentColor"/>
+          </svg>
+          <p>
+            La reconstrucción completa de los journeys conversacionales,
+            combinada con RAG sobre la base de conocimiento interna, permitió
+            pasar de un bot transaccional a un asistente realmente
+            conversacional.
+          </p>
+          <footer>IBM Case Studies · 2024</footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ARQUITECTURA ============== -->
+    <section class="section section-alt" id="arquitectura">
+      <div class="container">
+        <div class="eyebrow reveal">Arquitectura</div>
+        <h2 class="section-title reveal">Las cinco capas de una integración seria</h2>
+        <p class="section-lead reveal">
+          Un patrón de referencia para llevar un LLM al corazón de los
+          sistemas empresariales sin comprometer seguridad ni gobierno.
+        </p>
+
+        <div class="layers-wrap">
+          <div class="layer-card reveal" style="--c:#3b82f6">
+            <div class="layer-head">
+              <span class="layer-num">5</span>
+              <h3>Gobierno</h3>
+            </div>
+            <p>SSO, OAuth, RBAC/ABAC, auditoría, evaluación continua y cumplimiento normativo (AI Act, ISO 42001).</p>
+          </div>
+          <div class="layer-card reveal" style="--c:#8b5cf6">
+            <div class="layer-head">
+              <span class="layer-num">4</span>
+              <h3>Aplicación</h3>
+            </div>
+            <p>Copilotos, agentes, chatbots y APIs expuestas a los sistemas consumidores.</p>
+          </div>
+          <div class="layer-card layer-core reveal" style="--c:#ec4899">
+            <div class="layer-head">
+              <span class="layer-num">3</span>
+              <h3>Modelo</h3>
+            </div>
+            <p>LLM comercial o self-hosted, RAG, fine-tuning, prompt engineering y guardrails.</p>
+          </div>
+          <div class="layer-card reveal" style="--c:#f59e0b">
+            <div class="layer-head">
+              <span class="layer-num">2</span>
+              <h3>Orquestación</h3>
+            </div>
+            <p>LangChain, LlamaIndex, bases vectoriales, ETL y pipelines de datos.</p>
+          </div>
+          <div class="layer-card reveal" style="--c:#10b981">
+            <div class="layer-head">
+              <span class="layer-num">1</span>
+              <h3>Datos</h3>
+            </div>
+            <p>ERP, CRM, SCM, BI, gestión documental y la base de conocimiento de la organización.</p>
+          </div>
+        </div>
+
+        <div class="flow reveal">
+          <div class="flow-step">Usuario</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Retrieval</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">LLM + RAG</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Cita + acción</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">API al SI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== RIESGOS ============== -->
+    <section class="section" id="riesgos">
+      <div class="container">
+        <div class="eyebrow reveal">Riesgos</div>
+        <h2 class="section-title reveal">Lo que puede salir mal (y cómo mitigarlo)</h2>
+
+        <div class="risk-grid">
+          <div class="risk reveal" data-level="alto">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2 L22 20 L2 20 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <line x1="12" y1="9" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="12" cy="17" r="1" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3>Alucinaciones</h3>
+            </div>
+            <p>El modelo inventa datos con total convicción.</p>
+            <div class="risk-mit">→ RAG + validación humana</div>
+          </div>
+
+          <div class="risk reveal" data-level="alto">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="10" width="16" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 10 V 7 a 4 4 0 0 1 8 0 V 10" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3>Fuga de información</h3>
+            </div>
+            <p>Datos sensibles filtrados en prompts o respuestas.</p>
+            <div class="risk-mit">→ RBAC, cifrado, modelos privados</div>
+          </div>
+
+          <div class="risk reveal" data-level="medio">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 3 a 9 9 0 0 1 9 9" fill="currentColor" opacity="0.3"/>
+                </svg>
+              </div>
+              <h3>Sesgos algorítmicos</h3>
+            </div>
+            <p>Respuestas que discriminan o excluyen grupos.</p>
+            <div class="risk-mit">→ Auditoría + datasets balanceados</div>
+          </div>
+
+          <div class="risk reveal" data-level="medio">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <polyline points="4,4 4,20 20,20" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <polyline points="7,16 11,12 9,10 13,6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Prompt injection</h3>
+            </div>
+            <p>Un usuario malicioso redirige el comportamiento del modelo.</p>
+            <div class="risk-mit">→ Filtros + sandboxing de instrucciones</div>
+          </div>
+
+          <div class="risk reveal" data-level="bajo">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <text x="12" y="16" text-anchor="middle" fill="currentColor" font-size="10" font-weight="700">$</text>
+                </svg>
+              </div>
+              <h3>Costos</h3>
+            </div>
+            <p>Tokens, cómputo y talento pueden dispararse.</p>
+            <div class="risk-mit">→ Optimización, SLM, caching</div>
+          </div>
+
+          <div class="risk reveal" data-level="bajo">
+            <div class="risk-head">
+              <div class="risk-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 7 L21 7 L21 17 L3 17 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                </svg>
+              </div>
+              <h3>Vendor lock-in</h3>
+            </div>
+            <p>Dependencia total de un proveedor único.</p>
+            <div class="risk-mit">→ Arquitectura multi-modelo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FUTURO ============== -->
+    <section class="section section-future" id="futuro">
+      <div class="fut-bg" aria-hidden="true">
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+      </div>
+
+      <div class="container">
+        <div class="eyebrow light reveal">Horizonte 2030</div>
+        <h2 class="section-title light reveal">Hacia sistemas que piensan, ven y actúan</h2>
+        <p class="section-lead light reveal">
+          Siete tendencias que definirán la próxima generación de
+          sistemas de información. No son predicciones: ya están en
+          producción en algún lugar del mundo.
+        </p>
+
+        <div class="future-grid">
+          <div class="fut reveal" style="--g1:#6366f1;--g2:#ec4899">
+            <div class="fut-num">01</div>
+            <h3>LLM multimodales</h3>
+            <p>Texto, imagen, audio y vídeo en un mismo espacio de razonamiento. Un modelo, todas las entradas.</p>
+          </div>
+          <div class="fut reveal" style="--g1:#10b981;--g2:#06b6d4">
+            <div class="fut-num">02</div>
+            <h3>IA privada on-premise</h3>
+            <p>Modelos desplegados en la propia infraestructura para sectores regulados: salud, banca, defensa.</p>
+          </div>
+          <div class="fut reveal" style="--g1:#f59e0b;--g2:#ef4444">
+            <div class="fut-num">03</div>
+            <h3>Agentes autónomos</h3>
+            <p>Equipos de agentes que planifican, ejecutan y se autocorrigen. De copiloto a colleague digital.</p>
+          </div>
+          <div class="fut reveal" style="--g1:#8b5cf6;--g2:#3b82f6">
+            <div class="fut-num">04</div>
+            <h3>Small Language Models</h3>
+            <p>Modelos compactos en el edge: latencia baja, coste bajo, datos que nunca salen del dispositivo.</p>
+          </div>
+          <div class="fut reveal" style="--g1:#ec4899;--g2:#f97316">
+            <div class="fut-num">05</div>
+            <h3>RPA cognitivo</h3>
+            <p>Automatización de procesos que combina RPA clásico con comprensión de documentos no estructurados.</p>
+          </div>
+          <div class="fut reveal" style="--g1:#06b6d4;--g2:#6366f1">
+            <div class="fut-num">06</div>
+            <h3>Copilotos nativos</h3>
+            <p>SAP Joule, Salesforce Einstein, ServiceNow Now Assist. El LLM ya viene instalado en el SI.</p>
+          </div>
+          <div class="fut fut-wide reveal" style="--g1:#1e293b;--g2:#6366f1">
+            <div class="fut-num">07</div>
+            <h3>Gobierno y auditoría</h3>
+            <p>AI Act europeo, ISO/IEC 42001, evaluaciones de impacto obligatorias. La IA deja de ser un experimento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CIERRE ============== -->
+    <section class="section cta" id="contacto">
+      <div class="container narrow center">
+        <h2 class="section-title reveal">
+          El LLM no va a <em>reemplazar</em> los sistemas de información.
+        </h2>
+        <h2 class="section-title gradient-text reveal">
+          Va a ser su próxima capa.
+        </h2>
+        <p class="lead reveal" style="margin-top:1.5rem">
+          Esta investigación es solo el comienzo. Los próximos cinco años
+          van a redefinir qué entendemos por “sistema de información”.
+        </p>
+        <div class="hero-cta reveal" style="margin-top:2.5rem">
+          <a href="#top" class="btn btn-primary">↑ Volver arriba</a>
+          <a href="https://github.com/DivorcedLance/tendencias-semana-11" class="btn btn-ghost">Ver código fuente</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="logo-text">LLM<span class="logo-accent">×</span>SI</div>
+        <p class="muted">Trabajo grupal · Grupo 2<br/>Curso: Tendencias en Sistemas de Información<br/>Lima, Perú — 2026</p>
+      </div>
+      <div>
+        <h4>Integrantes</h4>
+        <ul class="muted">
+          <li>Martínez Fuentes, Kenny</li>
+          <li>Vergara Pachas, José</li>
+          <li>Motta Chumbe, JeanPierre</li>
+          <li>Triveño Daza, Felipe</li>
+          <li>Guerrero Falla, Christian</li>
+          <li>Sernaqué Gutierrez, José</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stack</h4>
+        <ul class="muted">
+          <li>HTML5 semántico</li>
+          <li>CSS3 · animaciones nativas</li>
+          <li>JS sin frameworks</li>
+          <li>SVG inline</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 · Grupo 2</span>
+      <span>Hecho con CSS, SVG y café.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
