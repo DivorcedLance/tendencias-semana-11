@@ -1,0 +1,464 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+% Paquetes esenciales
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+
+% Configuración de hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black,
+    pdftitle={Large Language Models en Sistemas de Información Empresariales},
+    pdfauthor={Grupo 2 - Tendencias en Sistemas de Información}
+}
+
+% Configuración de títulos
+\titleformat{\section}{\Large\bfseries\color{blue!70!black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{blue!60!black}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{blue!50!black}}{\thesubsubsection}{1em}{}
+
+% Encabezado y pie
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small LLM en Sistemas de Información Empresariales}
+\fancyhead[R]{\small Grupo 2}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Bibliografía
+\usepackage[backend=biber, style=ieee, sorting=ynt]{biblatex}
+\addbibresource{referencias.bib}
+
+% Espaciado
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% =============== PORTADA ===============
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\Huge\bfseries Large Language Models en\\[0.3cm] Sistemas de Información Empresariales\par}
+    \vspace{1.5cm}
+    {\Large\itshape Integración de LLM en ERP, CRM, SCM, BI, gestión documental y atención al cliente\par}
+    \vspace{2cm}
+    \rule{0.8\textwidth}{0.5pt}\\[0.5cm]
+    {\Large\bfseries Integrantes del Grupo N°2\par}
+    \vspace{0.5cm}
+    \begin{tabular}{l}
+        Martínez Fuentes, Kenny Uldarico Danny \\
+        Vergara Pachas, José Luis \\
+        Motta Chumbe, JeanPierre D'Angelo \\
+        Triveño Daza, Felipe Santiago \\
+        Guerrero Falla, Christian Angelo \\
+        Sernaqué Gutierrez, José Roberto \\
+    \end{tabular}
+    \rule{0.8\textwidth}{0.5pt}\\[1.5cm]
+    \begin{flushleft}
+        \textbf{CURSO:} \\
+        TENDENCIAS EN SISTEMAS DE INFORMACIÓN \\[0.5cm]
+        \textbf{DOCENTE:} \\
+        ANGULO CALDERÓN, CÉSAR AUGUSTO
+    \end{flushleft}
+    \vfill
+    {\Large Lima, Perú\\2026\par}
+\end{titlepage}
+
+% =============== ÍNDICE ===============
+\tableofcontents
+\newpage
+
+% =============== 1. RESUMEN EJECUTIVO ===============
+\section{Resumen Ejecutivo del Tema}
+
+El presente trabajo analiza la aplicación de los \textbf{Large Language Models (LLM)} en los Sistemas de Información modernos, considerando su impacto en la automatización, la toma de decisiones, la gestión de datos, la interacción con los usuarios y la transformación digital organizacional. Esta tendencia tecnológica, fundamentada en la arquitectura de transformadores (\textit{transformers}) y sus mecanismos de autoatención (\textit{self-attention}), dota a los sistemas informáticos de una capacidad sin precedentes para comprender, procesar y generar lenguaje natural evaluando sutilezas, conexiones y contextos complejos. En la actualidad, los LLM gozan de una alta relevancia empresarial porque están revolucionando el manejo de información, optimizando las operaciones y ofreciendo experiencias de usuario altamente personalizadas. Su relación con los Sistemas de Información radica en su capacidad para integrarse en herramientas corporativas, incrementando la eficiencia y fomentando una innovación continua en la toma de decisiones basada en datos no estructurados. A lo largo del documento se examinan los fundamentos conceptuales y tecnológicos de los LLM, su evolución histórica, su integración con sistemas ERP, CRM, SCM, BI, gestión documental y atención al cliente, así como sus beneficios, riesgos, arquitectura de implementación, desafíos y tendencias futuras.
+
+% =============== 2. PLANTEAMIENTO DEL PROBLEMA ===============
+\section{Planteamiento del Problema Organizacional}
+
+\subsection{Situación Actual}
+
+En la actualidad, las empresas se enfrentan al reto de operar en entornos caracterizados por un exceso de información no estructurada y por procesos que aún dependen de flujos manuales lentos y costosos. Los sistemas de información tradicionales ---tales como los ERP, CRM, SCM y las plataformas de BI--- exhiben limitaciones significativas para explotar de manera inteligente la enorme cantidad de datos que circula por las organizaciones, lo que se traduce en un bajo nivel de automatización cognitiva, una limitada personalización de los servicios corporativos y tiempos de respuesta elevados en la atención a clientes internos y externos.
+
+A esto se suma la creciente complejidad de los datos no estructurados: correos, contratos, tickets de soporte, documentos técnicos, registros de conversaciones y reportes en lenguaje natural que, en muchos casos, representan más del 80\% de la información empresarial, pero que permanecen subutilizados. Ante este panorama, la rápida evolución y proliferación de los LLM surge como una respuesta tecnológica capaz de transformar la gestión corporativa, ofreciendo un enorme potencial para automatizar la atención al cliente, disminuir drásticamente el tiempo dedicado al análisis manual de la información y proporcionar un soporte avanzado en la gestión documental.
+
+\subsection{Problema Central}
+
+\begin{quote}
+\textit{¿Cómo pueden los Large Language Models (LLM) contribuir a mejorar la capacidad analítica, la automatización de flujos de trabajo y la toma de decisiones en las organizaciones modernas mediante su integración en los Sistemas de Información Empresariales?}
+\end{quote}
+
+\subsection{Justificación}
+
+\subsubsection{Justificación Tecnológica}
+
+La innovación fundamental de esta tendencia radica en la arquitectura de transformadores y sus mecanismos de autoatención, los cuales permiten a los sistemas informáticos procesar y comprender el lenguaje natural capturando la complejidad, las sutilezas y el contexto semántico de los datos. A nivel de arquitectura de software, los LLM aportan la capacidad de someter a los modelos a un ajuste fino (\textit{fine-tuning}) utilizando datos de dominios específicos y orquestarlos mediante APIs, lo cual transforma los sistemas de información empresariales tradicionales, dotándolos de un procesamiento lingüístico avanzado que permite interacciones sistémicas y análisis de datos no estructurados con una precisión técnica previamente inalcanzable.
+
+\subsubsection{Justificación Organizacional}
+
+A nivel corporativo, la integración de LLM optimiza directamente los procesos operativos, la gestión documental y la atención al cliente, reduciendo significativamente la necesidad de análisis manual. Mejora la toma de decisiones al procesar y resumir extensos repositorios de información, identificando patrones y tendencias que facilitan resoluciones basadas en evidencia. Además, automatiza los flujos de trabajo mediante asistentes y \textit{chatbots} inteligentes capaces de ofrecer respuestas con un alto grado de conciencia contextual, mejorando la experiencia del usuario y aumentando la productividad de los equipos internos.
+
+\subsubsection{Justificación Estratégica}
+
+Esta tecnología actúa como un catalizador para la transformación digital al revolucionar la manera en que las organizaciones gestionan sus datos, optimizan sus operaciones y entregan valor a través de experiencias personalizadas. Estratégicamente, convierte a los sistemas de información en activos proactivos y cognitivos, impulsando la innovación transversal en distintas industrias. Al habilitar una mayor eficiencia operativa y una capacidad de adaptación inteligente frente a las demandas del entorno, asegura una ventaja competitiva sostenible en el mercado moderno.
+
+% =============== 3. OBJETIVOS ===============
+\section{Objetivos de la Investigación}
+
+\subsection{Objetivo General}
+
+Analizar el impacto de la integración de Large Language Models (LLM) en Sistemas de Información Empresariales, determinando cómo optimizan la capacidad analítica y la automatización de flujos de trabajo, y su contribución a la Transformación Digital de las organizaciones modernas, considerando sus aplicaciones, beneficios, riesgos y arquitectura tecnológica.
+
+\subsection{Objetivos Específicos}
+
+\begin{enumerate}[leftmargin=*]
+    \item Describir los fundamentos conceptuales y tecnológicos de los Large Language Models (LLM).
+    \item Identificar sus principales aplicaciones en Sistemas de Información, estudiando su integración en ERP, CRM, SCM, BI, mesa de ayuda, gestión documental y atención al cliente.
+    \item Analizar un caso de uso organizacional real que evidencie la implementación de un LLM en el entorno corporativo.
+    \item Proponer una arquitectura tecnológica de implementación para la integración segura y escalable de estos modelos de lenguaje.
+    \item Evaluar beneficios, riesgos, desafíos y tendencias futuras de la adopción de LLM en las organizaciones modernas.
+\end{enumerate}
+
+% =============== 4. MARCO CONCEPTUAL Y TECNOLÓGICO ===============
+\section{Marco Conceptual y Tecnológico}
+
+\subsection{Definición de los Large Language Models (LLM)}
+
+Los Large Language Models son modelos de inteligencia artificial basados en redes neuronales profundas, específicamente en la arquitectura de transformadores, entrenados sobre corpus de texto masivo (del orden de cientos de miles de millones a billones de \textit{tokens}) con el objetivo de comprender, generar y manipular lenguaje natural. Modelos representativos incluyen la familia GPT (Generative Pre-trained Transformer) de OpenAI, Claude de Anthropic, Gemini de Google, LLaMA de Meta y Mistral, entre otros. Su capacidad de realizar tareas de procesamiento de lenguaje natural ---tales como la generación de texto, el resumen, la traducción, el análisis de sentimiento, la respuesta a preguntas y el razonamiento--- los ha convertido en una pieza central de la nueva generación de aplicaciones empresariales \cite{nistAIRMF2023}.
+
+\subsection{Conceptos Relacionados}
+
+\subsubsection{Inteligencia Artificial Generativa}
+
+La IA Generativa (GenAI) es la disciplina que agrupa a los modelos capaces de crear contenido nuevo (texto, imágenes, audio, video, código) a partir de patrones aprendidos. Los LLM son la concreción más extendida de la IA Generativa en el dominio textual, y actualmente representan la base sobre la cual se construyen asistentes, copilotos y agentes inteligentes en las empresas.
+
+\subsubsection{Retrieval-Augmented Generation (RAG)}
+
+RAG es una arquitectura que combina un LLM con un sistema de recuperación de información. En lugar de depender exclusivamente del conocimiento almacenado en los pesos del modelo, el sistema primero consulta una base de conocimiento vectorial (por ejemplo, manuales internos, normativa, tickets históricos) y luego utiliza el contexto recuperado para generar una respuesta fundamentada y verificable. Esto reduce las alucinaciones y permite mantener el modelo actualizado sin necesidad de reentrenarlo \cite{nistGenAI2024}.
+
+\subsubsection{Embeddings}
+
+Los embeddings son representaciones vectoriales densas de palabras, oraciones o documentos, en un espacio de alta dimensionalidad donde la distancia semántica entre conceptos se preserva. Son el insumo fundamental de los sistemas de búsqueda semántica, RAG y los algoritmos de similaridad que alimentan las interfaces conversacionales modernas.
+
+\subsubsection{Agentes Inteligentes}
+
+Los agentes basados en LLM son entidades de software que utilizan un modelo de lenguaje como ``cerebro'' para planificar, razonar y ejecutar acciones sobre herramientas externas (APIs, bases de datos, sistemas internos). Un agente puede descomponer un objetivo en pasos, elegir la herramienta adecuada, invocar la acción y evaluar el resultado, habilitando flujos de trabajo autónomos en la empresa.
+
+\subsubsection{APIs e Integración Empresarial}
+
+Las APIs (Application Programming Interfaces) son el mecanismo estándar mediante el cual los LLM se conectan con los sistemas empresariales (ERP, CRM, SCM, BI). Permiten invocar al modelo, enviarle contexto, recibir respuestas y ejecutar acciones sobre los sistemas de registro. Frameworks como LangChain, LlamaIndex, Semantic Kernel y los conectores nativos de los hyperscalers (Azure OpenAI, AWS Bedrock, Google Vertex AI) aceleran esta integración.
+
+\subsection{Componentes Tecnológicos de los LLM}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Hardware:} GPUs de alta memoria (H100, A100) y, crecientemente, TPUs y aceleradores neuromórficos.
+    \item \textbf{Modelos base:} redes \textit{transformer} con miles de millones de parámetros, entrenadas con técnicas de \textit{self-supervised learning}.
+    \item \textbf{Datos de entrenamiento:} corpus masivo, heterogéneo y multilingüe.
+    \item \textbf{Técnicas de alineación:} RLHF (\textit{Reinforcement Learning from Human Feedback}), DPO (\textit{Direct Preference Optimization}) y \textit{constitutional AI} para reducir salidas dañinas.
+    \item \textbf{Fine-tuning y adaptación:} LoRA, QLoRA, \textit{prompt tuning} y \textit{instruction tuning} para especializar el modelo en dominios o tareas.
+    \item \textbf{Infraestructura de despliegue:} servicios gestionados (Azure OpenAI, AWS Bedrock, Google Vertex AI) o \textit{on-premise} con vLLM, Ollama, TGI (\textit{Text Generation Inference}).
+    \item \textbf{Bases de datos vectoriales:} Pinecone, Weaviate, Milvus, Qdrant, Chroma, pgvector.
+    \item \textbf{Orquestadores y frameworks:} LangChain, LlamaIndex, Semantic Kernel, Haystack.
+    \item \textbf{Gobierno y observabilidad:} herramientas de evaluación, monitorización, registro de prompts y respuestas, control de costes y trazabilidad.
+\end{itemize}
+
+\subsection{Diferencias entre LLM y los Sistemas Empresariales Tradicionales}
+
+\begin{table}[h!]
+\centering
+\caption{Comparación entre LLM y sistemas empresariales tradicionales}
+\label{tab:comparacion}
+\begin{tabular}{p{4.5cm} p{5.5cm} p{5.5cm}}
+\toprule
+\textbf{Dimensión} & \textbf{Sistemas tradicionales (ERP/CRM/BI)} & \textbf{Large Language Models} \\
+\midrule
+Tipo de datos & Estructurados (tablas, registros) & No estructurados (texto, voz, imágenes) \\
+Interacción & Formularios, consultas SQL, dashboards & Lenguaje natural, conversación, voz \\
+Tipo de respuesta & Determinística, basada en reglas & Probabilística, generativa \\
+Personalización & Segmentación rígida, parametrización & Personalización dinámica por usuario y contexto \\
+Adaptabilidad & Cambios vía configuración o desarrollo & Re-ajuste rápido mediante \textit{prompting} y RAG \\
+Conocimiento & Codificado en esquemas y código & Aprendido de corpus masivo + RAG \\
+Interfaz & GUI rígida, capacitación previa & Interfaz conversacional, baja curva de aprendizaje \\
+Riesgos & Errores de proceso & Alucinaciones, sesgos, fugas de información \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Nivel de Madurez Tecnológica de los LLM}
+
+De acuerdo con el AI Index Report 2024 de Stanford HAI, la inversión privada en IA generativa se disparó a USD 25.2 mil millones en 2023, casi ocho veces la cifra de 2022 \cite{stanfordAIIndex2024}. El entrenamiento de modelos frontera supera los USD 100 millones en cómputo y los principales proveedores (OpenAI, Google, Anthropic, Meta, Mistral) ya ofrecen modelos comerciales de propósito general con APIs maduras. No obstante, la \textit{AI Index 2024} también advierte que \textbf{faltan evaluaciones estandarizadas y consistentes para medir la responsabilidad de los LLM}, lo cual evidencia que la disciplina se encuentra en una fase de crecimiento acelerado pero todavía incipiente en cuanto a su gobernanza. En síntesis, los LLM están en una fase de \textbf{adopción empresarial creciente y temprana consolidación}, comparable a la fase de la computación en la nube en 2012-2015.
+
+% =============== 5. EVOLUCIÓN ===============
+\section{Evolución de los Sistemas de Información hacia los LLM}
+
+\subsection{Sistemas Transaccionales}
+
+La primera era de los sistemas de información (1960-1990) estuvo dominada por sistemas transaccionales como ERP, CRM y SCM. Su propósito era \textbf{registrar y procesar datos estructurados} (pedidos, facturas, transacciones, movimientos de inventario) con el fin de automatizar los procesos operativos. Su aporte fue enorme en eficiencia, pero estaban diseñados para datos rígidos y no para comprender lenguaje natural.
+
+\subsection{Sistemas Analíticos}
+
+A partir de los años 90 y, sobre todo, en la primera década del 2000, emergieron los sistemas analíticos (BI, Data Warehouse, OLAP) cuyo objetivo era \textbf{reportar y soportar la toma de decisiones} a partir de la agregación de datos históricos. Herramientas como SAP BW, Oracle BI, Microsoft Power BI y Tableau transformaron la manera en que las organizaciones consumen información, pero requerían analistas especializados y consultas predefinidas.
+
+\subsection{Sistemas Inteligentes}
+
+En la década de 2010, los sistemas inteligentes basados en \textit{Machine Learning} y \textit{Data Science} permitieron \textbf{predecir y clasificar}: scoring crediticio, detección de fraude, mantenimiento predictivo, recomendación de productos, etc. Aquí aparecen las APIs de ML, los modelos entrenados sobre datos internos y los primeros copilotos en sectores específicos. El conocimiento se encuentra en los parámetros del modelo.
+
+\subsection{Sistemas Generativos}
+
+Desde 2020 y, explosivamente, desde finales de 2022 con el lanzamiento de ChatGPT, los LLM inauguran la era de los \textbf{sistemas generativos}. La diferencia cualitativa respecto a la etapa anterior es que, en lugar de meramente predecir o clasificar, \textbf{crean contenido
+nuevo y asisten cognitivamente} al usuario. Chatbots, copilotos, generadores de código, resúmenes automáticos y agentes conversacionales entran en producción en prácticamente todas las industrias.
+
+\subsection{Sistemas Autónomos}
+
+De manera incipiente pero acelerada, la última frontera son los \textbf{sistemas autónomos}, basados en agentes LLM que ejecutan tareas y toman acciones sin intervención humana directa. Un agente conectado a un ERP puede consultar inventario, generar una orden de compra, validarla con políticas internas y enviarla al proveedor. Frameworks como LangGraph, AutoGen y CrewAI ya permiten prototipos de este tipo. Esta evolución puede sintetizarse en la Tabla \ref{tab:evolucion}.
+
+\begin{table}[h!]
+\centering
+\caption{Línea evolutiva de los sistemas de información}
+\label{tab:evolucion}
+\begin{tabular}{p{3.5cm} p{5cm} p{5cm}}
+\toprule
+\textbf{Etapa} & \textbf{Característica principal} & \textbf{Ejemplo} \\
+\midrule
+Transaccional & Registro y procesamiento de datos & ERP, CRM, SCM \\
+Analítico & Reportes y toma de decisiones & BI, Data Warehouse, OLAP \\
+Inteligente & Predicción y clasificación & Machine Learning, Data Science \\
+Generativo & Creación de contenido y asistencia cognitiva & Chatbots LLM, RAG, copilotos \\
+Autónomo & Ejecución de tareas y toma de acciones & Agentes inteligentes, AI workflows \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 6. ENFOQUE ESPECÍFICO ===============
+\section{Enfoque Específico: LLM en Sistemas de Información Empresariales}
+
+Este apartado desarrolla el núcleo diferenciador del trabajo: explicar cómo los LLM se integran con los distintos sistemas que componen el ecosistema corporativo moderno.
+
+\subsection{Integración de LLM con Sistemas ERP}
+
+Los Enterprise Resource Planning (ERP) ---SAP S/4HANA, Oracle Fusion, Microsoft Dynamics 365, Odoo--- gestionan los procesos centrales: finanzas, contabilidad, compras, producción, logística y recursos humanos. La integración de LLM en un ERP se materializa en:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Asistentes conversacionales} que permiten consultar datos en lenguaje natural (``¿Cuál fue el margen bruto del Q3 en la región sur?'') y obtener respuestas con la consulta SQL subyacente generada automáticamente.
+    \item \textbf{Generación automática de reportes financieros y operativos} a partir de narrativas y plantillas.
+    \item \textbf{Clasificación y ruteo inteligente de facturas, pedidos y solicitudes} en los flujos de aprobación.
+    \item \textbf{Soporte a usuarios} dentro del propio ERP, reduciendo tickets y tiempos de capacitación.
+\end{itemize}
+
+La arquitectura típica es RAG sobre el data warehouse del ERP + API del LLM, con un orquestador (LangChain) que mantiene el contexto y la seguridad.
+
+\subsection{Integración de LLM con Sistemas CRM}
+
+Los sistemas CRM (Salesforce, HubSpot, Microsoft Dynamics CRM, Zoho) almacenan la relación con clientes: contactos, oportunidades, tickets, historiales de interacción, campañas. Los LLM aportan:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Atención conversacional 24/7} mediante asistentes que responden consultas, gestionan devoluciones y escalan a humanos cuando es necesario.
+    \item \textbf{Análisis de sentimiento y priorización} automática de tickets y correos.
+    \item \textbf{Generación de borradores} de correos comerciales, propuestas y respuestas, personalizadas con el historial del cliente.
+    \item \textbf{Resumen de llamadas y reuniones} cargado automáticamente en la ficha del cliente.
+    \item \textbf{Segmentación dinámica} y recomendación de próximas mejores acciones para el vendedor.
+\end{itemize}
+
+El caso de Vodafone Ireland con IBM watsonx Assistant \cite{ibmVodafone} documenta cómo un asistente conversacional empresarial puede alcanzar una reducción del 80\% en utterances malinterpretadas y hasta un 20\% de mejora en tasas de contención tras una modernización basada en LLM.
+
+\subsection{Integración de LLM con Sistemas SCM}
+
+La cadena de suministro (SCM) incluye planificación de demanda, gestión de inventario, compras, logística y relación con proveedores. Aquí los LLM permiten:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Análisis de sentimiento y noticias} para detectar disrupciones en la cadena de suministro.
+    \item \textbf{Generación de planes de demanda} en lenguaje natural, explicables y auditables.
+    \item \textbf{Asistentes para proveedores} que responden RFP, ayudan a cargar catálogos y resuelven incidencias logísticas.
+    \item \textbf{Síntesis automática de contratos} y cláusulas relevantes para el área legal y de compras.
+\end{itemize}
+
+\subsection{Integración de LLM con Business Intelligence (BI)}
+
+Las plataformas de BI (Power BI, Tableau, Looker, Qlik) consumen datos estructurados y los presentan en dashboards. La llegada de los LLM introduce el concepto de \textbf{analítica aumentada} (\textit{augmented analytics}):
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Consultas en lenguaje natural} sobre el data warehouse: ``muéstrame la evolución de ventas por categoría y región en los últimos 12 meses'' se traduce automáticamente a una visualización.
+    \item \textbf{Generación automática de insights}: el modelo detecta anomalías, tendencias y correlaciones y las explica en lenguaje natural.
+    \item \textbf{Storytelling de datos}: generación de narrativas ejecutivas a partir de un dashboard.
+    \item \textbf{Copilotos de BI} como Microsoft Copilot for Power BI o Tableau GPT.
+\end{itemize}
+
+\subsection{Integración de LLM con Sistemas de Gestión Documental}
+
+Los repositorios documentales (SharePoint, Confluence, Alfresco, Google Drive corporativo) acumulan manuales, contratos, políticas, procedimientos, normativas, etc. Los LLM transforman esta información en conocimiento accionable mediante:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Búsqueda semántica}: encontrar documentos relevantes aunque no contengan las palabras exactas de la consulta.
+    \item \textbf{Resumen y síntesis} de documentos extensos.
+    \item \textbf{Clasificación y extracción} de entidades (cláusulas, fechas, importes, partes firmantes).
+    \item \textbf{Respuesta a preguntas} fundamentadas en el repositorio, con citas verificables.
+\end{itemize}
+
+Esta es la aplicación canónica del patrón RAG y, por tanto, la más madura técnicamente.
+
+\subsection{Integración de LLM con Mesas de Ayuda y Soporte Técnico}
+
+Las mesas de ayuda (ServiceNow, Jira Service Management, Zendesk) reciben miles de tickets. Los LLM pueden:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Clasificar y priorizar} automáticamente los tickets entrantes.
+    \item \textbf{Sugerir respuestas} a los agentes humanos basándose en la base de conocimiento histórica.
+    \item \textbf{Resolver de forma autónoma} incidentes de nivel 1 (reincio de servicios, recuperación de contraseñas, FAQs).
+    \item \textbf{Generar artículos de conocimiento} a partir de tickets resueltos.
+\end{itemize}
+
+\subsection{Arquitectura de Integración de LLM en Entornos Empresariales}
+
+La arquitectura general puede resumirse en cinco capas (ver Fig. \ref{fig:arquitectura}):
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Capa de datos:} ERP, CRM, SCM, BI, gestión documental, base de conocimiento.
+    \item \textbf{Capa de orquestación e indexación:} conectores (LangChain, LlamaIndex, Airflow), bases vectoriales (Pinecone, Milvus, pgvector), \textit{ETL} y sincronización.
+    \item \textbf{Capa de modelo:} LLM comercial (OpenAI, Anthropic, Google) o \textit{self-hosted} (LLaMA, Mistral) con técnicas de RAG, \textit{fine-tuning} y \textit{prompt engineering}.
+    \item \textbf{Capa de aplicación:} copilotos, agentes, \textit{chatbots}, APIs expuestas a los sistemas consumidores.
+    \item \textbf{Capa de gobierno:} autenticación (SSO, OAuth), autorización (RBAC, ABAC), \textit{logging}, auditoría, evaluación continua, control de costes y cumplimiento normativo \cite{owaspTop10LLM2025}.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering\vspace{0.5cm}\textit{[Diagrama de la arquitectura de 5 capas propuesta: Datos → Orquestación → Modelo → Aplicación → Gobierno]}\vspace{0.5cm}}}
+\caption{Arquitectura de referencia para integrar LLM en SI empresariales}
+\label{fig:arquitectura}
+\end{figure}
+
+% =============== 7. APLICACIONES EN SI ===============
+\section{Aplicaciones de los LLM en Sistemas de Información}
+
+De la matriz de aplicaciones posibles, el grupo selecciona las cinco más pertinentes al enfoque de la investigación (ver Tabla \ref{tab:aplicaciones}).
+
+\begin{table}[h!]
+\centering
+\caption{Aplicaciones seleccionadas de LLM en SI}
+\label{tab:aplicaciones}
+\begin{tabular}{p{4cm} p{10cm}}
+\toprule
+\textbf{Área del SI} & \textbf{Aplicación} \\
+\midrule
+ERP & Automatización de consultas y reportes: el usuario pregunta en lenguaje natural y el sistema genera la consulta al ERP, valida permisos y entrega la respuesta. \\
+CRM & Atención conversacional y personalización: asistentes 24/7 que resuelven dudas, gestionan devoluciones y personalizan ofertas. \\
+BI & Consultas en lenguaje natural y analítica aumentada: dashboards descritos en prosa, \textit{insights} automáticos y storytelling ejecutivo. \\
+Gestión documental & Búsqueda semántica, resumen, clasificación y extracción de información sobre manuales, contratos y políticas. \\
+Mesa de ayuda & Chatbots internos, soporte técnico automatizado y clasificación de tickets, con escalado a agentes humanos. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 8. BENEFICIOS ESPERADOS ===============
+\section{Beneficios Esperados}
+
+La integración de LLM en los sistemas de información empresariales genera beneficios en múltiples dimensiones (ver Tabla \ref{tab:beneficios}).
+
+\begin{table}[h!]
+\centering
+\caption{Beneficios esperados de la integración de LLM}
+\label{tab:beneficios}
+\begin{tabular}{p{3.5cm} p{11cm}}
+\toprule
+\textbf{Dimensión} & \textbf{Beneficios esperados} \\
+\midrule
+Estratégica & Innovación acelerada, ventaja competitiva por diferenciación en atención al cliente, nuevos servicios digitales y modelos de negocio basados en IA. \\
+Operativa & Reducción de tiempos de respuesta, automatización de tareas repetitivas, menor carga operativa y aumento de la eficiencia de los equipos. \\
+Tecnológica & Integración flexible vía APIs, escalabilidad elástica en la nube, interoperabilidad entre sistemas heterogéneos. \\
+Analítica & Mejor toma de decisiones gracias al procesamiento de datos no estructurados, generación de conocimiento a partir de información previamente subutilizada. \\
+Económica & Reducción de costes operativos, mayor productividad por empleado, retorno de inversión acelerado en escenarios de atención al cliente. \\
+Humana & Mejora de la experiencia de usuario (UX) en interfaces conversacionales, aumento de la satisfacción laboral al eliminar tareas mecánicas. \\
+Institucional & Mejor calidad del servicio, mayor transparencia y trazabilidad de las decisiones soportadas por IA. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 9. RIESGOS ===============
+\section{Riesgos, Desafíos y Limitaciones}
+
+Toda adopción de LLM en entornos productivos debe gestionarse de manera proactiva. La Tabla \ref{tab:riesgos} sintetiza los principales riesgos y estrategias de mitigación, alineadas con marcos como el NIST AI RMF \cite{nistAIRMF2023} y el NIST AI 600-1 Generative AI Profile \cite{nistGenAI2024}.
+
+\begin{table}[h!]
+\centering
+\caption{Matriz de riesgos, desafíos y limitaciones}
+\label{tab:riesgos}
+\begin{tabular}{p{3.5cm} p{4.5cm} p{6.5cm}}
+\toprule
+\textbf{Riesgo} & \textbf{Descripción} & \textbf{Estrategia de mitigación} \\
+\midrule
+Alucinaciones del modelo & Respuestas incorrectas o inventadas que pueden inducir a error. & Validación humana, RAG con fuentes verificadas, evaluación continua con datasets representativos. \\
+Fuga de información sensible & Exposición de datos confidenciales a través de prompts o del propio modelo. & Control de accesos (RBAC/ABAC), anonimización, cifrado en tránsito y en reposo, modelos privados o \textit{on-premise} para datos críticos. \\
+Sesgos algorítmicos & Respuestas discriminatorias o injustas hacia grupos o individuos. & Auditoría de sesgos, datasets balanceados, revisión por diversidad de equipos humanos. \\
+Prompt injection & Manipulación maliciosa del modelo mediante instrucciones embebidas. & Filtros de entrada, validación de instrucciones, separación de instrucciones y datos, listas negras de patrones \cite{owaspTop10LLM2025}. \\
+Dependencia tecnológica & Exceso de dependencia de un proveedor (vendor lock-in). & Arquitectura multi-modelo, estándares abiertos, portabilidad de datos y de prompts. \\
+Costos elevados & Infraestructura, cómputo, tokens, licencias y talento especializado. & Evaluación costo-beneficio, optimización de \textit{prompts}, modelos más pequeños (SLM) cuando sea viable, \textit{caching} de respuestas. \\
+Falta de talento & Escasez de especialistas en prompt engineering, MLOps, LLMOps y arquitectura de IA. & Capacitación, equipos multidisciplinarios, partnerships con proveedores y universidades. \\
+Cumplimiento normativo & Riesgos legales y regulatorios (RGPD, AI Act europeo, leyes locales de protección de datos). & Políticas internas, auditoría, gobierno de IA, \textit{dataprotection impact assessments} \cite{nistGenAI2024}. \\
+Riesgos de seguridad de la cadena de suministro & Uso de modelos o componentes comprometidos. & Verificación de procedencia, SBOM para IA, evaluación de proveedores \cite{owaspTop10LLM2025}. \\
+Manejo inseguro de salidas & Inyección de código o instrucciones dañinas en respuestas que se ejecutan aguas abajo. & Validación de salidas, sandboxing, principio de mínimo privilegio. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 10. TENDENCIAS FUTURAS ===============
+\section{Tendencias Futuras}
+
+En los próximos 3 a 5 años, la integración de LLM en los sistemas de información empresariales evolucionará en varias direcciones clave:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{LLM multimodales:} modelos que comprenden y generan texto, imagen, audio y video de forma nativa, lo que habilitará asistentes que interpreten pantallas, diagramas técnicos, grabaciones de reuniones y contratos escaneados.
+    \item \textbf{IA generativa privada para empresas:} despliegues \textit{on-premise} o en nubes privadas con modelos especializados por industria (financiera, salud, legal, manufactura).
+    \item \textbf{Agentes autónomos empresariales:} flujos de trabajo donde varios agentes colaboran (compras, ventas, soporte) con mínima intervención humana, orquestados por un supervisor LLM.
+    \item \textbf{Small Language Models (SLM):} modelos más pequeños, especializados y eficientes energéticamente, ideales para inferencia en el borde (\textit{edge}) o en dispositivos del usuario final.
+    \item \textbf{Automatización cognitiva de procesos:} combinación de RPA + LLM para automatizar procesos que requieren comprensión de documentos y toma de decisiones.
+    \item \textbf{Integración nativa de LLM en ERP, CRM y BI:} vendors como SAP (Joule), Microsoft (Copilot), Salesforce (Einstein) y ServiceNow ya ofrecen copilotos integrados.
+    \item \textbf{Sistemas de información autónomos:} bases de datos, data warehouses y lagos de datos que incorporan razonamiento LLM como capa nativa.
+    \item \textbf{IA regulada y auditable:} avance del AI Act europeo, de la ISO/IEC 42001 y de marcos nacionales que exigirán trazabilidad, explicabilidad y evaluaciones de impacto \cite{nistGenAI2024}.
+    \item \textbf{IA sostenible y eficiente energéticamente:} presión regulatoria y económica por reducir el consumo de cómputo, con modelos destilados y \textit{hardware} especializado.
+\end{itemize}
+
+% =============== 11. CONCLUSIONES ===============
+\section{Conclusiones}
+
+\subsection{Conclusión Tecnológica}
+
+La tendencia analizada demuestra que los \textbf{Large Language Models permiten mejorar la interacción entre las personas y los sistemas de información empresariales mediante interfaces conversacionales, búsqueda semántica y automatización cognitiva}, sustentadas en la arquitectura de transformadores y en patrones como RAG, agentes y copilotos integrados. El estado de la tecnología, documentado por el AI Index 2024 \cite{stanfordAIIndex2024}, muestra un crecimiento exponencial en inversión y adopción, pero también evidencia lagunas críticas en evaluaciones estandarizadas de responsabilidad y seguridad.
+
+\subsection{Conclusión Organizacional}
+
+Su adopción \textbf{puede transformar la operación de las áreas de finanzas, ventas, soporte, logística, RR.\,HH. y atención al cliente} al optimizar la toma de decisiones, reducir tiempos de respuesta y liberar a los profesionales de tareas mecánicas. El caso de Vodafone Ireland \cite{ibmVodafone} confirma que es posible obtener mejoras medibles ---3x más rapidez en la creación de journeys conversacionales, hasta 20\% más en tasas de contención y 80\% menos de utterances malinterpretadas--- tras modernizar un asistente virtual con LLM.
+
+\subsection{Conclusión Crítica}
+
+Sin embargo, su implementación \textbf{requiere gestionar riesgos como alucinaciones, fugas de información, prompt injection, sesgos algorítmicos, dependencia tecnológica, costos y cumplimiento normativo}, siguiendo marcos reconocidos como el NIST AI RMF \cite{nistAIRMF2023}, el NIST Generative AI Profile \cite{nistGenAI2024} y el OWASP Top 10 for LLM Applications \cite{owaspTop10LLM2025}. La disciplina de LLMOps, junto con la evaluación continua y el gobierno de IA, resulta tan crítica como la selección del modelo.
+
+\subsection{Conclusión Prospectiva}
+
+En los próximos años, esta tendencia evolucionará hacia \textbf{sistemas de información multimodales, agentes autónomos, modelos privados especializados y una IA regulada, auditable y energéticamente eficiente}, en la que los LLM se integrarán de forma nativa en los ERPs, CRMs, plataformas de BI y mesas de ayuda, dando lugar a la próxima generación de Sistemas de Información inteligentes y autónomos.
+
+% =============== 12. REFERENCIAS ===============
+\section{Referencias Bibliográficas}
+
+\nocite{*}
+\printbibliography[title={Referencias}]
+
+\end{document}

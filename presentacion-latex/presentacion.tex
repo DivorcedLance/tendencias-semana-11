@@ -1,0 +1,548 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes, fit, backgrounds}
+
+% Tema y colores
+\usetheme{Madrid}
+\usecolortheme{whale}
+
+% Colores personalizados (paleta azul similar al informe)
+\definecolor{azulPrincipal}{RGB}{31,73,125}
+\definecolor{azulClaro}{RGB}{68,114,196}
+\definecolor{azulSuave}{RGB}{220,230,241}
+\definecolor{grisOscuro}{RGB}{64,64,64}
+\definecolor{acento}{RGB}{237,125,49}
+\definecolor{verdeExito}{RGB}{84,130,53}
+
+\setbeamercolor{frametitle}{fg=white, bg=azulPrincipal}
+\setbeamercolor{title}{fg=white, bg=azulPrincipal}
+\setbeamercolor{structure}{fg=azulPrincipal}
+\setbeamercolor{block title}{fg=white, bg=azulClaro}
+\setbeamercolor{block body}{fg=grisOscuro, bg=azulSuave!40}
+\setbeamercolor{alertblock title}{fg=white, bg=acento}
+\setbeamercolor{alertblock body}{fg=grisOscuro, bg=acento!15}
+\setbeamercolor{normal text}{fg=grisOscuro}
+\setbeamercolor{itemize item}{fg=azulPrincipal}
+\setbeamercolor{itemize subitem}{fg=azulClaro}
+\setbeamercolor{enumerate item}{fg=azulPrincipal}
+
+% Quitar iconos de navegación
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{headline}{}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[square]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+% Información del documento
+\title{\textbf{Large Language Models en\\Sistemas de Información Empresariales}}
+\subtitle{Integración de LLM en ERP, CRM, SCM, BI, gestión documental y atención al cliente}
+\author{Grupo 2}
+\institute{\small Integrantes: Martínez Fuentes, K. \textperiodcentered\ Vergara, J. \textperiodcentered\ Motta, J. \textperiodcentered\ Triveño, F. \textperiodcentered\ Guerrero, C. \textperiodcentered\ Sernaqué, J.}
+\date{Curso: Tendencias en Sistemas de Información\\
+Docente: Angulo Calderón, César Augusto\\
+Lima, Perú -- 2026}
+
+\begin{document}
+
+% =============== DIAPOSITIVA PORTADA ===============
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[azulPrincipal] (current page.north west) rectangle ([yshift=-5cm]current page.north east);
+    \end{tikzpicture}
+    \vspace{1cm}
+    \begin{center}
+        {\color{azulPrincipal}\rule{\textwidth}{2pt}}\\[0.3cm]
+        {\Large\textbf{Grupo 2}}\\[1cm]
+        {\Huge\textcolor{azulPrincipal}{\textbf{Large Language Models}}}\\[0.3cm]
+        {\Huge\textcolor{azulPrincipal}{\textbf{en Sistemas de Información}}}\\
+        {\Huge\textcolor{azulPrincipal}{\textbf{Empresariales}}}\\[1cm]
+        {\large\itshape Integración de LLM en ERP, CRM, SCM, BI,\\gestión documental y atención al cliente}\\[1.5cm]
+        \begin{flushleft}
+            \textbf{\textcolor{azulPrincipal}{Integrantes:}}\\[0.2cm]
+            Martínez Fuentes, Kenny Uldarico Danny \\
+            Vergara Pachas, José Luis \\
+            Motta Chumbe, JeanPierre D'Angelo \\
+            Triveño Daza, Felipe Santiago \\
+            Guerrero Falla, Christian Angelo \\
+            Sernaqué Gutierrez, José Roberto
+        \end{flushleft}
+    \end{center}
+    \vfill
+    \begin{flushright}
+        \small
+        \textcolor{azulPrincipal}{\textbf{Curso:}} Tendencias en Sistemas de Información\\
+        \textcolor{azulPrincipal}{\textbf{Docente:}} Angulo Calderón, César Augusto\\[0.3cm]
+        \textbf{Lima, Perú -- 2026}
+    \end{flushright}
+\end{frame}
+
+% =============== AGENDA ===============
+\begin{frame}{Agenda}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{1. Introducción y problema}}\\
+            \textit{(3 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{2. Marco conceptual}}\\
+            \textit{(2 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{3. Evolución de los SI}}\\
+            \textit{(2 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{4. Integración con ERP/CRM/SCM/BI}}\\
+            \textit{(3 min)}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{5. Caso de uso: Vodafone Ireland}}\\
+            \textit{(4 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{6. Arquitectura tecnológica}}\\
+            \textit{(3 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{7. Riesgos y gobernanza}}\\
+            \textit{(2 min)}\\[0.4cm]
+            \textbf{\textcolor{azulPrincipal}{8. Conclusiones}}\\
+            \textit{(1 min)}
+        \end{column}
+    \end{columns}
+    \vspace{0.5cm}
+    \begin{block}{\textbf{Duración total: 20 minutos}}
+        \centering Trabajo grupal -- Grupo 2\\
+        \textit{Tendencias en Sistemas de Información}
+    \end{block}
+\end{frame}
+
+% =============== INTRODUCCIÓN Y PROBLEMA ===============
+\section{Introducción y problema}
+\begin{frame}{¿Qué son los LLM?}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \begin{block}{Definición}
+                Modelos de IA basados en la arquitectura de \textbf{transformadores}, entrenados sobre corpus de texto masivo (cientos de miles de millones de tokens) para \textbf{comprender, generar y manipular} lenguaje natural.
+            \end{block}
+            \vspace{0.3cm}
+            \textbf{Modelos representativos:}
+            \begin{itemize}
+                \item \textbf{GPT-4 / GPT-4o} -- OpenAI
+                \item \textbf{Claude 3.5 / 4} -- Anthropic
+                \item \textbf{Gemini 1.5 / 2} -- Google
+                \item \textbf{LLaMA 3} -- Meta
+                \item \textbf{Mistral} -- open weights
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{alertblock}{Capacidades clave}
+                \begin{itemize}
+                    \item Generación de texto
+                    \item Resumen y traducción
+                    \item Razonamiento
+                    \item Respuesta a preguntas
+                    \item Generación de código
+                    \item Análisis de sentimiento
+                \end{itemize}
+            \end{alertblock}
+            \vspace{0.2cm}
+            \begin{center}
+                \textcolor{azulPrincipal}{\textit{``La nueva generación de aplicaciones empresariales''}}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Problema central}
+    \begin{center}
+        \fbox{\parbox{0.85\textwidth}{\centering\vspace{0.3cm}
+        \textit{¿Cómo pueden los Large Language Models (LLM) contribuir a mejorar la capacidad analítica, la automatización de flujos de trabajo y la toma de decisiones en las organizaciones modernas mediante su integración en los Sistemas de Información Empresariales?}\vspace{0.3cm}}}
+    \end{center}
+    \vspace{0.3cm}
+    \textbf{\textcolor{azulPrincipal}{Situación actual:}}
+    \begin{itemize}
+        \item Exceso de información \textbf{no estructurada} (>80\% de los datos empresariales)
+        \item Sistemas tradicionales (ERP, CRM, BI) \textbf{no comprenden} lenguaje natural
+        \item Procesos manuales lentos, baja automatización cognitiva
+        \item Personalización limitada y tiempos de respuesta elevados
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Justificación: ¿por qué importa?}
+    \begin{columns}[T]
+        \begin{column}{0.33\textwidth}
+            \begin{block}{Tecnológica}
+                \begin{itemize}
+                    \item Transformers + self-attention
+                    \item Fine-tuning por dominio
+                    \item APIs y orquestación
+                    \item RAG sobre datos propios
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \begin{block}{Organizacional}
+                \begin{itemize}
+                    \item Optimiza procesos operativos
+                    \item Reduce análisis manual
+                    \item Mejora toma de decisiones
+                    \item Aumenta productividad
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \begin{block}{Estratégica}
+                \begin{itemize}
+                    \item Ventaja competitiva
+                    \item Nuevos servicios digitales
+                    \item SI proactivos y cognitivos
+                    \item Transformación digital
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== MARCO CONCEPTUAL ===============
+\section{Marco conceptual}
+\begin{frame}{Conceptos relacionados}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{IA Generativa (GenAI)}}\\
+            Modelos que crean contenido nuevo (texto, imágenes, audio, código).\\[0.3cm]
+            \textbf{\textcolor{azulPrincipal}{RAG (Retrieval-Augmented Generation)}}\\
+            Combina un LLM con un sistema de recuperación vectorial para fundamentar respuestas en conocimiento propio de la empresa.\\[0.3cm]
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{Embeddings}}\\
+            Representaciones vectoriales densas; insumo fundamental de búsqueda semántica.\\[0.3cm]
+            \textbf{\textcolor{azulPrincipal}{Agentes Inteligentes}}\\
+            LLM como ``cerebro'' que planifica, invoca herramientas y ejecuta acciones.\\[0.3cm]
+            \textbf{\textcolor{azulPrincipal}{APIs e Integración}}\\
+            LangChain, LlamaIndex, Azure OpenAI, AWS Bedrock, Vertex AI.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{LLM vs. sistemas tradicionales}
+    \begin{center}
+    \small
+    \begin{tabular}{p{3.3cm} p{4.8cm} p{4.8cm}}
+        \toprule
+        \textbf{Dimensión} & \textbf{ERP / CRM / BI} & \textbf{LLM} \\
+        \midrule
+        Tipo de datos & Estructurados (tablas, registros) & No estructurados (texto, voz, imágenes) \\
+        Interacción & Formularios, SQL, dashboards & Lenguaje natural, conversación, voz \\
+        Respuesta & Determinística, basada en reglas & Probabilística, generativa \\
+        Personalización & Segmentación rígida & Dinámica por usuario y contexto \\
+        Adaptabilidad & Configuración / desarrollo & Re-ajuste vía prompting y RAG \\
+        Conocimiento & Esquemas y código & Corpus masivo + RAG \\
+        Interfaz & GUI rígida, capacitación previa & Conversacional, baja curva \\
+        Riesgos & Errores de proceso & Alucinaciones, sesgos, fugas \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    \vspace{0.3cm}
+    \begin{alertblock}{Nivel de madurez}
+        \centering Inversión privada en GenAI en 2023: USD \textbf{25.2 mil millones} (8x vs. 2022) -- Stanford HAI (2024). Faltan \textbf{evaluaciones estandarizadas} de responsabilidad.
+    \end{alertblock}
+\end{frame}
+
+% =============== EVOLUCIÓN ===============
+\section{Evolución de los SI}
+\begin{frame}{De los sistemas transaccionales a los sistemas autónomos}
+    \begin{center}
+    \begin{tikzpicture}[node distance=0.4cm, every node/.style={font=\small}]
+        \node[draw, rounded corners, fill=azulSuave!60, text width=2.2cm, align=center, minimum height=1.1cm] (t1) {\textbf{1960--90}\\Transaccional\\(ERP, CRM, SCM)};
+        \node[draw, -Latex, thick, right=of t1, yshift=-0.3cm] {};
+        \node[draw, rounded corners, fill=azulSuave!80, text width=2.2cm, align=center, minimum height=1.1cm, right=1.3cm of t1] (t2) {\textbf{1990--2010}\\Analítico\\(BI, OLAP, DW)};
+        \node[draw, rounded corners, fill=azulSuave!90, text width=2.2cm, align=center, minimum height=1.1cm, right=1.3cm of t2] (t3) {\textbf{2010--20}\\Inteligente\\(ML, Data Science)};
+        \node[draw, rounded corners, fill=azulClaro, text=white, text width=2.2cm, align=center, minimum height=1.1cm, right=1.3cm of t3] (t4) {\textbf{2020--}\\Generativo\\(ChatGPT, RAG)};
+        \node[draw, rounded corners, fill=acento, text=white, text width=2.2cm, align=center, minimum height=1.1cm, right=1.3cm of t4] (t5) {\textbf{Futuro}\\Autónomo\\(AI Agents)};
+        \draw[-Latex, thick, azulPrincipal] (t1) -- (t2);
+        \draw[-Latex, thick, azulPrincipal] (t2) -- (t3);
+        \draw[-Latex, thick, azulPrincipal] (t3) -- (t4);
+        \draw[-Latex, thick, acento] (t4) -- (t5);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{0.4cm}
+    \begin{block}{Salto cualitativo}
+        De predecir / clasificar (ML clásico) a \textbf{crear contenido y asistir cognitivamente} (LLM). Próxima frontera: agentes que \textbf{ejecutan tareas} sin intervención humana.
+    \end{block}
+\end{frame}
+
+% =============== INTEGRACIÓN ===============
+\section{Integración con SI}
+\begin{frame}{Integración con ERP y CRM}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{ERP (SAP, Oracle, Dynamics, Odoo)}
+                \begin{itemize}
+                    \item Asistentes en lenguaje natural
+                    \item Reportes financieros automáticos
+                    \item Clasificación de facturas/pedidos
+                    \item Soporte a usuarios
+                \end{itemize}
+                \textit{``¿Cuál fue el margen bruto del Q3 en la región sur?''}
+            \end{block}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{block}{CRM (Salesforce, HubSpot, Zoho)}
+                \begin{itemize}
+                    \item Atención 24/7 con chatbots
+                    \item Análisis de sentimiento
+                    \item Borradores personalizados
+                    \item Resumen automático de reuniones
+                \end{itemize}
+                \vspace{0.2cm}
+                \textbf{Vodafone Ireland:} 3x más rápido en crear journeys, 80\% menos utterances malinterpretadas.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Integración con SCM, BI, gestión documental y mesa de ayuda}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{SCM}} -- Cadena de suministro
+            \begin{itemize}
+                \item Análisis de noticias y disrupciones
+                \item Planes de demanda explicables
+                \item Asistentes para proveedores (RFP)
+            \end{itemize}
+            \textbf{\textcolor{azulPrincipal}{BI}} -- Analítica aumentada
+            \begin{itemize}
+                \item Consultas en lenguaje natural
+                \item Generación automática de insights
+                \item Storytelling de datos
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{Gestión documental}}
+            \begin{itemize}
+                \item Búsqueda semántica
+                \item Resumen y extracción de entidades
+                \item RAG con citas verificables
+            \end{itemize}
+            \textbf{\textcolor{azulPrincipal}{Mesa de ayuda}}
+            \begin{itemize}
+                \item Clasificación automática de tickets
+                \item Resolución autónoma de nivel 1
+                \item Generación de artículos de conocimiento
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== CASO DE USO ===============
+\section{Caso de uso}
+\begin{frame}{Caso: Vodafone Ireland + IBM watsonx Assistant}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \textbf{Contexto:}\\
+            TOBi, el asistente virtual de Vodafone Ireland, atendía a millones de clientes con un modelo anterior. La tasa de resolución estaba \textbf{estancada en 35\%}.\\[0.3cm]
+            \textbf{Solución:}\\
+            Migración al nuevo IBM watsonx Assistant con \textbf{capacidades generativas} (RAG, NLU basado en foundation model, aprendizaje continuo).\\[0.3cm]
+            \textbf{Reconstrucción completa} de los journeys conversacionales y ajustes en la aplicación interna.
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{alertblock}{Resultados medibles}
+                \begin{center}
+                {\Huge\color{acento}\textbf{3x}}\\[0.2cm]
+                \small más rápido creando nuevos journeys\\[0.4cm]
+                {\Huge\color{acento}\textbf{+20\%}}\\[0.2cm]
+                \small mejora en tasas de contención\\[0.4cm]
+                {\Huge\color{verdeExito}\textbf{--80\%}}\\[0.2cm]
+                \small utterances malinterpretadas
+                \end{center}
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== ARQUITECTURA ===============
+\section{Arquitectura tecnológica}
+\begin{frame}{Arquitectura de 5 capas para integrar LLM}
+    \begin{center}
+    \begin{tikzpicture}[
+        node distance=0.25cm,
+        capa/.style={draw, rounded corners=4pt, text width=10cm, align=center, minimum height=1cm, font=\small\bfseries},
+        capa1/.style={capa, fill=azulSuave!60},
+        capa2/.style={capa, fill=azulSuave!75},
+        capa3/.style={capa, fill=azulSuave!85, text=white},
+        capa4/.style={capa, fill=azulClaro, text=white},
+        capa5/.style={capa, fill=acento, text=white},
+        every node/.style={font=\small}
+    ]
+        \node[capa1] (c5) {5. \textbf{Gobierno}: SSO, OAuth, RBAC/ABAC, auditoría, evaluación, cumplimiento};
+        \node[capa2, above=of c5] (c4) {4. \textbf{Aplicación}: copilotos, agentes, chatbots, APIs para sistemas consumidores};
+        \node[capa3, above=of c4, fill=azulPrincipal] (c3) {3. \textbf{Modelo}: LLM comercial o self-hosted + RAG + fine-tuning + prompt engineering};
+        \node[capa2, above=of c3] (c2) {2. \textbf{Orquestación e indexación}: LangChain, LlamaIndex, bases vectoriales, ETL};
+        \node[capa1, above=of c2] (c1) {1. \textbf{Datos}: ERP, CRM, SCM, BI, gestión documental, base de conocimiento};
+        \draw[-Latex, thick, azulPrincipal] (c1) -- (c2);
+        \draw[-Latex, thick, azulPrincipal] (c2) -- (c3);
+        \draw[-Latex, thick, azulPrincipal] (c3) -- (c4);
+        \draw[-Latex, thick, acento] (c4) -- (c5);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{0.3cm}
+    \begin{block}{Patrón RAG como eje}
+        \centering El usuario consulta $\rightarrow$ retrieval semántico $\rightarrow$ contexto al LLM $\rightarrow$ respuesta fundamentada con citas $\rightarrow$ ejecución sobre SI vía APIs
+    \end{block}
+\end{frame}
+
+% =============== APLICACIONES Y BENEFICIOS ===============
+\section{Aplicaciones y beneficios}
+\begin{frame}{Aplicaciones y beneficios esperados}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{Aplicaciones en SI}}
+            \begin{itemize}
+                \item \textbf{ERP}: consultas NL, reportes automáticos
+                \item \textbf{CRM}: atención 24/7, personalización
+                \item \textbf{BI}: analítica aumentada
+                \item \textbf{Gestión documental}: búsqueda semántica, RAG
+                \item \textbf{Mesa de ayuda}: clasificación, soporte autónomo
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{\textcolor{azulPrincipal}{Beneficios}}
+            \begin{itemize}
+                \item \textbf{Estratégicos}: innovación, ventaja competitiva
+                \item \textbf{Operativos}: menos tiempos, más eficiencia
+                \item \textbf{Tecnológicos}: APIs flexibles, escalabilidad
+                \item \textbf{Analíticos}: decisiones basadas en datos no estructurados
+                \item \textbf{Económicos}: reducción de costes, ROI
+                \item \textbf{Humanos}: mejor UX, mayor satisfacción
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== RIESGOS ===============
+\section{Riesgos y gobernanza}
+\begin{frame}{Riesgos clave y estrategias de mitigación}
+    \small
+    \begin{center}
+    \begin{tabular}{p{3.5cm} p{5cm} p{5cm}}
+        \toprule
+        \textbf{Riesgo} & \textbf{Descripción} & \textbf{Mitigación} \\
+        \midrule
+        Alucinaciones & Respuestas inventadas & RAG + validación humana \\
+        Fuga de información & Datos sensibles en prompts & RBAC, cifrado, modelos privados \\
+        Sesgos & Respuestas discriminatorias & Auditoría, datasets balanceados \\
+        Prompt injection & Manipulación maliciosa & Filtros, separación instrucciones/datos \\
+        Dependencia & Vendor lock-in & Arquitectura multi-modelo \\
+        Costos & Tokens, cómputo, talento & Optimización, SLM, caching \\
+        Cumplimiento & RGPD, AI Act & Gobierno de IA, DPIA \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    \vspace{0.3cm}
+    \begin{alertblock}{Marcos de referencia}
+        \centering \textbf{NIST AI RMF} (gestión de riesgos) \textperiodcentered\ \textbf{NIST AI 600-1 Generative AI Profile} \textperiodcentered\ \textbf{OWASP Top 10 for LLM Applications 2025}
+    \end{alertblock}
+\end{frame}
+
+% =============== TENDENCIAS ===============
+\section{Tendencias}
+\begin{frame}{Tendencias futuras (3--5 años)}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Modelo y arquitectura}
+                \begin{itemize}
+                    \item \textbf{LLM multimodales} (texto, imagen, audio)
+                    \item \textbf{Small Language Models} (SLM) en el edge
+                    \item \textbf{IA privada} on-premise por industria
+                \end{itemize}
+            \end{block}
+            \begin{block}{Aplicación}
+                \begin{itemize}
+                    \item \textbf{Agentes autónomos} multi-equipo
+                    \item Automatización cognitiva de procesos (RPA + LLM)
+                    \item Copilotos nativos en SAP, Salesforce, ServiceNow
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Gobernanza}
+                \begin{itemize}
+                    \item \textbf{AI Act} europeo + ISO/IEC 42001
+                    \item Trazabilidad, explicabilidad obligatoria
+                    \item Evaluaciones de impacto
+                \end{itemize}
+            \end{block}
+            \begin{alertblock}{Visión prospectiva}
+                \centering SI \textbf{multimodales, autónomos, auditables y energéticamente eficientes}.\\[0.2cm]
+                \small Los LLM se integrarán de forma nativa en los ERPs, CRMs, BI y mesas de ayuda, dando lugar a la próxima generación de Sistemas de Información.
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== CONCLUSIONES ===============
+\section{Conclusiones}
+\begin{frame}{Conclusiones}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Tecnológica}
+                Los LLM mejoran la interacción persona--sistema mediante interfaces conversacionales, búsqueda semántica y automatización cognitiva, sustentadas en transformers, RAG y agentes.
+            \end{block}
+            \begin{block}{Organizacional}
+                Su adopción transforma finanzas, ventas, soporte, logística, RR.\,HH. y atención al cliente. El caso Vodafone Ireland confirma mejoras medibles (3x, +20\%, --80\%).
+            \end{block}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{alertblock}{Crítica}
+                Se requiere gestionar alucinaciones, fugas, prompt injection, sesgos, dependencia, costos y cumplimiento (NIST AI RMF, NIST GenAI Profile, OWASP).
+            \end{alertblock}
+            \begin{block}{Prospectiva}
+                SI multimodales, agentes autónomos, modelos privados, IA regulada y energéticamente eficiente. El LLM será una \textbf{capa nativa} de los SI empresariales.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% =============== CIERRE ===============
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[azulPrincipal] (current page.south west) rectangle ([yshift=4cm]current page.south east);
+    \end{tikzpicture}
+    \vfill
+    \begin{center}
+        {\Huge\textcolor{azulPrincipal}{\textbf{¿Preguntas?}}}\\[1.5cm]
+        {\Large\textcolor{azulPrincipal}{\textbf{Gracias por su atención}}}\\[1cm]
+        \begin{flushright}
+            \small
+            \textcolor{azulPrincipal}{\textbf{Grupo 2}}\\
+            Martínez Fuentes, Vergara, Motta,\\
+            Triveño, Guerrero, Sernaqué\\[0.3cm]
+            \textit{Curso: Tendencias en Sistemas de Información}
+        \end{flushright}
+    \end{center}
+    \vfill
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=south west, xshift=1cm, yshift=0.5cm] at (current page.south west) {\color{white}\small\textbf{Lima, Perú -- 2026}};
+    \end{tikzpicture}
+\end{frame}
+
+% =============== APÉNDICE: REFERENCIAS ===============
+\appendix
+\begin{frame}{Referencias bibliográficas}
+    \begin{enumerate}\setlength{\itemsep}{0pt}
+        \item \footnotesize \textbf{NIST} (2023). \textit{Artificial Intelligence Risk Management Framework (AI RMF 1.0)}. DOI: 10.6028/NIST.AI.100-1.
+        \item \textbf{IBM} (2024). \textit{Vodafone Ireland -- Redesigning conversational assistant to improve performance}. IBM Case Studies.
+        \item \textbf{NIST} (2024). \textit{AI RMF Generative Artificial Intelligence Profile}. DOI: 10.6028/NIST.AI.600-1.
+        \item \textbf{Salesforce} (2024). \textit{State of the AI Connected Customer}.
+        \item \textbf{Stanford HAI} (2024). \textit{The 2024 AI Index Report: Measuring trends in AI}.
+        \item \textbf{OWASP} (2024). \textit{Top 10 for LLM Applications 2025}. OWASP Foundation.
+        \item \footnotesize Cao, S. et al. (2026). \textit{Reframing Conversational Design in HRI: Deliberate Design with AI Scaffolds}. arXiv:2601.12084.
+        \item \footnotesize He, J. \& Liu, J. (2026). \textit{Seeing to Think? How Source Transparency Design Shapes Interactive Information Seeking and Evaluation in Conversational AI}. arXiv:2601.14611.
+        \item \footnotesize Vijayakumar, H. (2026). \textit{UX in the Age of AI: Rethinking Evaluation Metrics Through a Statistical Lens}. arXiv:2605.05600.
+    \end{enumerate}
+\end{frame}
+
+\end{document}

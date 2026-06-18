@@ -1,0 +1,20 @@
+# Playwright cache (browser automation artifacts)
+.playwright-mcp/
+
+# LaTeX compilation residuals
+*.aux
+*.log
+*.bbl
+*.blg
+*.bcf
+*.out
+*.toc
+*.nav
+*.snm
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.run.xml
+*.backup
+*.tmp

@@ -1,7 +1,3 @@
-Soy el integrante 06
-
----
-
 En zotero tengo las carpetas:
 
 Artículos científicos indexados (3)
