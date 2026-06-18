@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM en Sistemas de Información Empresariales · Grupo 2</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <!-- ============== 1. PORTADA ============== -->
+    <section class="slide slide-cover" data-title="Portada">
+      <div class="cover-strip"></div>
+      <div class="cover-content">
+        <div class="cover-eyebrow">Grupo 2</div>
+        <h1 class="cover-title">Large Language Models</h1>
+        <h1 class="cover-title">en Sistemas de Información</h1>
+        <h1 class="cover-title">Empresariales</h1>
+        <p class="cover-subtitle">
+          Integración de LLM en ERP, CRM, SCM, BI,<br />
+          gestión documental y atención al cliente
+        </p>
+        <div class="cover-meta">
+          <div class="cover-integrantes">
+            <strong>Integrantes:</strong><br />
+            Martínez Fuentes, Kenny Uldarico Danny<br />
+            Vergara Pachas, José Luis<br />
+            Motta Chumbe, JeanPierre D'Angelo<br />
+            Triveño Daza, Felipe Santiago<br />
+            Guerrero Falla, Christian Angelo<br />
+            Sernaqué Gutierrez, José Roberto
+          </div>
+          <div class="cover-curso">
+            <strong>Curso:</strong> Tendencias en Sistemas de Información<br />
+            <strong>Docente:</strong> Angulo Calderón, César Augusto<br />
+            Lima, Perú — 2026
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 2. AGENDA ============== -->
+    <section class="slide" data-title="Agenda">
+      <header class="slide-header">
+        <span class="slide-num">02</span>
+        <h2>Agenda</h2>
+      </header>
+      <div class="agenda-grid">
+        <ol class="agenda-list">
+          <li><strong>Introducción y problema</strong><span>3 min</span></li>
+          <li><strong>Marco conceptual</strong><span>2 min</span></li>
+          <li><strong>Evolución de los SI</strong><span>2 min</span></li>
+          <li><strong>Integración con ERP / CRM / SCM / BI</strong><span>3 min</span></li>
+          <li><strong>Caso de uso: Vodafone Ireland</strong><span>4 min</span></li>
+          <li><strong>Arquitectura tecnológica</strong><span>3 min</span></li>
+          <li><strong>Riesgos y gobernanza</strong><span>2 min</span></li>
+          <li><strong>Conclusiones</strong><span>1 min</span></li>
+        </ol>
+        <aside class="agenda-info">
+          <div class="duration">Duración total: <strong>20 minutos</strong></div>
+          <p>Trabajo grupal — Grupo 2</p>
+          <p><em>Tendencias en Sistemas de Información</em></p>
+          <div class="hint">
+            <strong>Navegación:</strong>
+            <span>← → / Espacio</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============== 3. ¿QUÉ SON LOS LLM? ============== -->
+    <section class="slide" data-title="¿Qué son los LLM?">
+      <header class="slide-header">
+        <span class="slide-num">03</span>
+        <h2>¿Qué son los LLM?</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <div class="card card-primary">
+            <h3>Definición</h3>
+            <p>Modelos de IA basados en la arquitectura de <strong>transformadores</strong>, entrenados sobre corpus de texto masivo (cientos de miles de millones de tokens) para <strong>comprender, generar y manipular</strong> lenguaje natural.</p>
+          </div>
+          <h4 class="subtitle">Modelos representativos</h4>
+          <ul class="bullets">
+            <li><strong>GPT-4 / GPT-4o</strong> — OpenAI</li>
+            <li><strong>Claude 3.5 / 4</strong> — Anthropic</li>
+            <li><strong>Gemini 1.5 / 2</strong> — Google</li>
+            <li><strong>LLaMA 3</strong> — Meta</li>
+            <li><strong>Mistral</strong> — open weights</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card card-accent">
+            <h3>Capacidades clave</h3>
+            <ul class="bullets">
+              <li>Generación de texto</li>
+              <li>Resumen y traducción</li>
+              <li>Razonamiento</li>
+              <li>Respuesta a preguntas</li>
+              <li>Generación de código</li>
+              <li>Análisis de sentimiento</li>
+            </ul>
+          </div>
+          <p class="quote">«La nueva generación de aplicaciones empresariales»</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 4. PROBLEMA CENTRAL ============== -->
+    <section class="slide" data-title="Problema central">
+      <header class="slide-header">
+        <span class="slide-num">04</span>
+        <h2>Problema central</h2>
+      </header>
+      <div class="question-box">
+        ¿Cómo pueden los Large Language Models (LLM) contribuir a mejorar la
+        <strong>capacidad analítica</strong>, la <strong>automatización de flujos
+        de trabajo</strong> y la <strong>toma de decisiones</strong> en las
+        organizaciones modernas mediante su integración en los Sistemas de
+        Información Empresariales?
+      </div>
+      <h4 class="subtitle">Situación actual</h4>
+      <ul class="bullets">
+        <li>Exceso de información <strong>no estructurada</strong> (&gt;80% de los datos empresariales).</li>
+        <li>Sistemas tradicionales (ERP, CRM, BI) <strong>no comprenden</strong> lenguaje natural.</li>
+        <li>Procesos manuales lentos y baja automatización cognitiva.</li>
+        <li>Personalización limitada y tiempos de respuesta elevados.</li>
+      </ul>
+    </section>
+
+    <!-- ============== 5. JUSTIFICACIÓN ============== -->
+    <section class="slide" data-title="Justificación">
+      <header class="slide-header">
+        <span class="slide-num">05</span>
+        <h2>Justificación: ¿por qué importa?</h2>
+      </header>
+      <div class="three-col">
+        <div class="card card-primary">
+          <h3>Tecnológica</h3>
+          <ul class="bullets">
+            <li>Transformers + self-attention</li>
+            <li>Fine-tuning por dominio</li>
+            <li>APIs y orquestación</li>
+            <li>RAG sobre datos propios</li>
+          </ul>
+        </div>
+        <div class="card card-primary">
+          <h3>Organizacional</h3>
+          <ul class="bullets">
+            <li>Optimiza procesos operativos</li>
+            <li>Reduce análisis manual</li>
+            <li>Mejora la toma de decisiones</li>
+            <li>Aumenta la productividad</li>
+          </ul>
+        </div>
+        <div class="card card-primary">
+          <h3>Estratégica</h3>
+          <ul class="bullets">
+            <li>Ventaja competitiva</li>
+            <li>Nuevos servicios digitales</li>
+            <li>SI proactivos y cognitivos</li>
+            <li>Transformación digital</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 6. CONCEPTOS RELACIONADOS ============== -->
+    <section class="slide" data-title="Conceptos relacionados">
+      <header class="slide-header">
+        <span class="slide-num">06</span>
+        <h2>Conceptos relacionados</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <h4 class="subtitle">IA Generativa (GenAI)</h4>
+          <p>Modelos que crean contenido nuevo (texto, imágenes, audio, código).</p>
+
+          <h4 class="subtitle">RAG — Retrieval-Augmented Generation</h4>
+          <p>Combina un LLM con un sistema de recuperación vectorial para fundamentar respuestas en conocimiento propio de la empresa.</p>
+        </div>
+        <div>
+          <h4 class="subtitle">Embeddings</h4>
+          <p>Representaciones vectoriales densas; insumo fundamental de búsqueda semántica.</p>
+
+          <h4 class="subtitle">Agentes Inteligentes</h4>
+          <p>LLM como «cerebro» que planifica, invoca herramientas y ejecuta acciones.</p>
+
+          <h4 class="subtitle">APIs e Integración</h4>
+          <p>LangChain, LlamaIndex, Azure OpenAI, AWS Bedrock, Vertex AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 7. LLM VS TRADICIONALES ============== -->
+    <section class="slide" data-title="LLM vs sistemas tradicionales">
+      <header class="slide-header">
+        <span class="slide-num">07</span>
+        <h2>LLM vs. sistemas tradicionales</h2>
+      </header>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>Dimensión</th>
+              <th>ERP / CRM / BI</th>
+              <th>LLM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Tipo de datos</td><td>Estructurados (tablas, registros)</td><td>No estructurados (texto, voz, imágenes)</td></tr>
+            <tr><td>Interacción</td><td>Formularios, SQL, dashboards</td><td>Lenguaje natural, conversación, voz</td></tr>
+            <tr><td>Respuesta</td><td>Determinística, basada en reglas</td><td>Probabilística, generativa</td></tr>
+            <tr><td>Personalización</td><td>Segmentación rígida</td><td>Dinámica por usuario y contexto</td></tr>
+            <tr><td>Adaptabilidad</td><td>Configuración / desarrollo</td><td>Re-ajuste vía prompting y RAG</td></tr>
+            <tr><td>Conocimiento</td><td>Esquemas y código</td><td>Corpus masivo + RAG</td></tr>
+            <tr><td>Interfaz</td><td>GUI rígida, capacitación previa</td><td>Conversacional, baja curva</td></tr>
+            <tr><td>Riesgos</td><td>Errores de proceso</td><td>Alucinaciones, sesgos, fugas</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card card-accent compact">
+        <strong>Nivel de madurez:</strong> la inversión privada en GenAI en 2023
+        alcanzó USD <strong>25.2 mil millones</strong> (8x vs. 2022) — Stanford
+        HAI (2024). Aún faltan evaluaciones estandarizadas de responsabilidad.
+      </div>
+    </section>
+
+    <!-- ============== 8. EVOLUCIÓN ============== -->
+    <section class="slide" data-title="Evolución de los SI">
+      <header class="slide-header">
+        <span class="slide-num">08</span>
+        <h2>De los sistemas transaccionales a los autónomos</h2>
+      </header>
+      <ol class="timeline">
+        <li class="t-step t-1"><span class="t-era">1960–90</span><span class="t-name">Transaccional</span><span class="t-desc">ERP, CRM, SCM</span></li>
+        <li class="t-step t-2"><span class="t-era">1990–2010</span><span class="t-name">Analítico</span><span class="t-desc">BI, OLAP, DW</span></li>
+        <li class="t-step t-3"><span class="t-era">2010–20</span><span class="t-name">Inteligente</span><span class="t-desc">ML, Data Science</span></li>
+        <li class="t-step t-4"><span class="t-era">2020–</span><span class="t-name">Generativo</span><span class="t-desc">ChatGPT, RAG</span></li>
+        <li class="t-step t-5"><span class="t-era">Futuro</span><span class="t-name">Autónomo</span><span class="t-desc">AI Agents</span></li>
+      </ol>
+      <div class="card card-primary compact">
+        <strong>Salto cualitativo:</strong> de predecir / clasificar (ML
+        clásico) a <strong>crear contenido y asistir cognitivamente</strong>
+        (LLM). Próxima frontera: agentes que <strong>ejecutan tareas</strong>
+        sin intervención humana.
+      </div>
+    </section>
+
+    <!-- ============== 9. INTEGRACIÓN ERP / CRM ============== -->
+    <section class="slide" data-title="Integración con ERP y CRM">
+      <header class="slide-header">
+        <span class="slide-num">09</span>
+        <h2>Integración con ERP y CRM</h2>
+      </header>
+      <div class="two-col">
+        <div class="card card-primary">
+          <h3>ERP — SAP, Oracle, Dynamics, Odoo</h3>
+          <ul class="bullets">
+            <li>Asistentes en lenguaje natural</li>
+            <li>Reportes financieros automáticos</li>
+            <li>Clasificación de facturas y pedidos</li>
+            <li>Soporte a usuarios internos</li>
+          </ul>
+          <p class="example">«¿Cuál fue el margen bruto del Q3 en la región sur?»</p>
+        </div>
+        <div class="card card-primary">
+          <h3>CRM — Salesforce, HubSpot, Zoho</h3>
+          <ul class="bullets">
+            <li>Atención 24/7 con chatbots</li>
+            <li>Análisis de sentimiento</li>
+            <li>Borradores personalizados</li>
+            <li>Resumen automático de reuniones</li>
+          </ul>
+          <p class="example"><strong>Vodafone Ireland:</strong> 3x más rápido creando journeys y 80% menos utterances malinterpretadas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 10. INTEGRACIÓN SCM, BI, DOC, HELP DESK ============== -->
+    <section class="slide" data-title="Integración con SCM, BI, gestión documental y mesa de ayuda">
+      <header class="slide-header">
+        <span class="slide-num">10</span>
+        <h2>Integración con SCM, BI, gestión documental y mesa de ayuda</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <h4 class="subtitle">SCM — Cadena de suministro</h4>
+          <ul class="bullets">
+            <li>Análisis de noticias y disrupciones</li>
+            <li>Planes de demanda explicables</li>
+            <li>Asistentes para proveedores (RFP)</li>
+          </ul>
+          <h4 class="subtitle">BI — Analítica aumentada</h4>
+          <ul class="bullets">
+            <li>Consultas en lenguaje natural</li>
+            <li>Generación automática de insights</li>
+            <li>Storytelling de datos</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="subtitle">Gestión documental</h4>
+          <ul class="bullets">
+            <li>Búsqueda semántica</li>
+            <li>Resumen y extracción de entidades</li>
+            <li>RAG con citas verificables</li>
+          </ul>
+          <h4 class="subtitle">Mesa de ayuda</h4>
+          <ul class="bullets">
+            <li>Clasificación automática de tickets</li>
+            <li>Resolución autónoma de nivel 1</li>
+            <li>Generación de artículos de conocimiento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 11. CASO VODAFONE ============== -->
+    <section class="slide" data-title="Caso: Vodafone Ireland + IBM watsonx Assistant">
+      <header class="slide-header">
+        <span class="slide-num">11</span>
+        <h2>Caso: Vodafone Ireland + IBM watsonx Assistant</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <h4 class="subtitle">Contexto</h4>
+          <p>TOBi, el asistente virtual de Vodafone Ireland, atendía a millones de clientes con un modelo anterior. La tasa de resolución estaba <strong>estancada en 35%</strong>.</p>
+
+          <h4 class="subtitle">Solución</h4>
+          <p>Migración al nuevo IBM watsonx Assistant con <strong>capacidades generativas</strong> (RAG, NLU basado en foundation model, aprendizaje continuo).</p>
+          <p><strong>Reconstrucción completa</strong> de los journeys conversacionales y ajustes en la aplicación interna.</p>
+        </div>
+        <div class="card card-accent center">
+          <h3>Resultados medibles</h3>
+          <div class="metric"><span class="m-value">3×</span><span class="m-label">más rápido creando nuevos journeys</span></div>
+          <div class="metric"><span class="m-value">+20%</span><span class="m-label">mejora en tasas de contención</span></div>
+          <div class="metric"><span class="m-value success">–80%</span><span class="m-label">utterances malinterpretadas</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 12. ARQUITECTURA ============== -->
+    <section class="slide" data-title="Arquitectura tecnológica">
+      <header class="slide-header">
+        <span class="slide-num">12</span>
+        <h2>Arquitectura de 5 capas para integrar LLM</h2>
+      </header>
+      <ol class="layers">
+        <li class="layer l-1"><span class="l-num">1</span><div><strong>Datos</strong><span>ERP, CRM, SCM, BI, gestión documental, base de conocimiento</span></div></li>
+        <li class="layer l-2"><span class="l-num">2</span><div><strong>Orquestación e indexación</strong><span>LangChain, LlamaIndex, bases vectoriales, ETL</span></div></li>
+        <li class="layer l-3"><span class="l-num">3</span><div><strong>Modelo</strong><span>LLM comercial o self-hosted + RAG + fine-tuning + prompt engineering</span></div></li>
+        <li class="layer l-4"><span class="l-num">4</span><div><strong>Aplicación</strong><span>Copilotos, agentes, chatbots, APIs para sistemas consumidores</span></div></li>
+        <li class="layer l-5"><span class="l-num">5</span><div><strong>Gobierno</strong><span>SSO, OAuth, RBAC/ABAC, auditoría, evaluación, cumplimiento</span></div></li>
+      </ol>
+      <div class="card card-primary compact">
+        <strong>Patrón RAG como eje:</strong> el usuario consulta →
+        retrieval semántico → contexto al LLM → respuesta fundamentada
+        con citas → ejecución sobre los SI vía APIs.
+      </div>
+    </section>
+
+    <!-- ============== 13. APLICACIONES Y BENEFICIOS ============== -->
+    <section class="slide" data-title="Aplicaciones y beneficios esperados">
+      <header class="slide-header">
+        <span class="slide-num">13</span>
+        <h2>Aplicaciones y beneficios esperados</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <h4 class="subtitle">Aplicaciones en SI</h4>
+          <ul class="bullets">
+            <li><strong>ERP</strong>: consultas NL, reportes automáticos</li>
+            <li><strong>CRM</strong>: atención 24/7, personalización</li>
+            <li><strong>BI</strong>: analítica aumentada</li>
+            <li><strong>Gestión documental</strong>: búsqueda semántica, RAG</li>
+            <li><strong>Mesa de ayuda</strong>: clasificación y soporte autónomo</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="subtitle">Beneficios</h4>
+          <ul class="bullets">
+            <li><strong>Estratégicos</strong>: innovación, ventaja competitiva</li>
+            <li><strong>Operativos</strong>: menos tiempos, más eficiencia</li>
+            <li><strong>Tecnológicos</strong>: APIs flexibles, escalabilidad</li>
+            <li><strong>Analíticos</strong>: decisiones sobre datos no estructurados</li>
+            <li><strong>Económicos</strong>: reducción de costes, ROI</li>
+            <li><strong>Humanos</strong>: mejor UX, mayor satisfacción</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 14. RIESGOS ============== -->
+    <section class="slide" data-title="Riesgos y gobernanza">
+      <header class="slide-header">
+        <span class="slide-num">14</span>
+        <h2>Riesgos clave y estrategias de mitigación</h2>
+      </header>
+      <div class="table-wrap">
+        <table class="compare risks">
+          <thead>
+            <tr>
+              <th>Riesgo</th>
+              <th>Descripción</th>
+              <th>Mitigación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alucinaciones</td><td>Respuestas inventadas</td><td>RAG + validación humana</td></tr>
+            <tr><td>Fuga de información</td><td>Datos sensibles en prompts</td><td>RBAC, cifrado, modelos privados</td></tr>
+            <tr><td>Sesgos</td><td>Respuestas discriminatorias</td><td>Auditoría, datasets balanceados</td></tr>
+            <tr><td>Prompt injection</td><td>Manipulación maliciosa</td><td>Filtros, separar instrucciones y datos</td></tr>
+            <tr><td>Dependencia</td><td>Vendor lock-in</td><td>Arquitectura multi-modelo</td></tr>
+            <tr><td>Costos</td><td>Tokens, cómputo, talento</td><td>Optimización, SLM, caching</td></tr>
+            <tr><td>Cumplimiento</td><td>RGPD, AI Act</td><td>Gobierno de IA, DPIA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card card-accent compact">
+        <strong>Marcos de referencia:</strong>
+        NIST AI RMF (gestión de riesgos) · NIST AI 600-1 Generative AI
+        Profile · OWASP Top 10 for LLM Applications 2025.
+      </div>
+    </section>
+
+    <!-- ============== 15. TENDENCIAS ============== -->
+    <section class="slide" data-title="Tendencias futuras">
+      <header class="slide-header">
+        <span class="slide-num">15</span>
+        <h2>Tendencias futuras (3–5 años)</h2>
+      </header>
+      <div class="three-col">
+        <div class="card card-primary">
+          <h3>Modelo y arquitectura</h3>
+          <ul class="bullets">
+            <li><strong>LLM multimodales</strong> (texto, imagen, audio)</li>
+            <li><strong>Small Language Models</strong> en el edge</li>
+            <li><strong>IA privada</strong> on-premise por industria</li>
+          </ul>
+        </div>
+        <div class="card card-primary">
+          <h3>Aplicación</h3>
+          <ul class="bullets">
+            <li><strong>Agentes autónomos</strong> multi-equipo</li>
+            <li>Automatización cognitiva de procesos (RPA + LLM)</li>
+            <li>Copilotos nativos en SAP, Salesforce, ServiceNow</li>
+          </ul>
+        </div>
+        <div class="card card-accent">
+          <h3>Gobernanza</h3>
+          <ul class="bullets">
+            <li><strong>AI Act</strong> europeo + ISO/IEC 42001</li>
+            <li>Trazabilidad y explicabilidad obligatorias</li>
+            <li>Evaluaciones de impacto</li>
+          </ul>
+          <p class="quote small">SI multimodales, autónomos, auditables y energéticamente eficientes. Los LLM serán una <strong>capa nativa</strong> de los SI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 16. CONCLUSIONES ============== -->
+    <section class="slide" data-title="Conclusiones">
+      <header class="slide-header">
+        <span class="slide-num">16</span>
+        <h2>Conclusiones</h2>
+      </header>
+      <div class="two-col">
+        <div>
+          <div class="card card-primary">
+            <h3>Tecnológica</h3>
+            <p>Los LLM mejoran la interacción persona–sistema mediante interfaces conversacionales, búsqueda semántica y automatización cognitiva, sustentadas en transformers, RAG y agentes.</p>
+          </div>
+          <div class="card card-primary">
+            <h3>Organizacional</h3>
+            <p>Su adopción transforma finanzas, ventas, soporte, logística, RR. HH. y atención al cliente. El caso Vodafone Ireland confirma mejoras medibles (3×, +20%, –80%).</p>
+          </div>
+        </div>
+        <div>
+          <div class="card card-accent">
+            <h3>Crítica</h3>
+            <p>Se requiere gestionar alucinaciones, fugas, prompt injection, sesgos, dependencia, costos y cumplimiento (NIST AI RMF, NIST GenAI Profile, OWASP).</p>
+          </div>
+          <div class="card card-primary">
+            <h3>Prospectiva</h3>
+            <p>SI multimodales, agentes autónomos, modelos privados, IA regulada y energéticamente eficiente. El LLM será una <strong>capa nativa</strong> de los SI empresariales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 17. CIERRE ============== -->
+    <section class="slide slide-cover slide-closing" data-title="¿Preguntas?">
+      <div class="cover-strip bottom"></div>
+      <div class="cover-content center">
+        <h1 class="closing-title">¿Preguntas?</h1>
+        <h2 class="closing-subtitle">Gracias por su atención</h2>
+        <div class="closing-meta">
+          <strong>Grupo 2</strong><br />
+          Martínez Fuentes, Vergara, Motta, Triveño, Guerrero, Sernaqué<br />
+          <em>Curso: Tendencias en Sistemas de Información</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 18. REFERENCIAS ============== -->
+    <section class="slide" data-title="Referencias">
+      <header class="slide-header">
+        <span class="slide-num">18</span>
+        <h2>Referencias bibliográficas</h2>
+      </header>
+      <ol class="refs">
+        <li><strong>NIST</strong> (2023). <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em>. DOI: 10.6028/NIST.AI.100-1.</li>
+        <li><strong>IBM</strong> (2024). <em>Vodafone Ireland — Redesigning conversational assistant to improve performance</em>. IBM Case Studies.</li>
+        <li><strong>NIST</strong> (2024). <em>AI RMF Generative Artificial Intelligence Profile</em>. DOI: 10.6028/NIST.AI.600-1.</li>
+        <li><strong>Salesforce</strong> (2024). <em>State of the AI Connected Customer</em>.</li>
+        <li><strong>Stanford HAI</strong> (2024). <em>The 2024 AI Index Report: Measuring trends in AI</em>.</li>
+        <li><strong>OWASP</strong> (2024). <em>Top 10 for LLM Applications 2025</em>. OWASP Foundation.</li>
+        <li>Cao, S. et al. (2026). <em>Reframing Conversational Design in HRI: Deliberate Design with AI Scaffolds</em>. arXiv:2601.12084.</li>
+        <li>He, J. &amp; Liu, J. (2026). <em>Seeing to Think? How Source Transparency Design Shapes Interactive Information Seeking and Evaluation in Conversational AI</em>. arXiv:2601.14611.</li>
+        <li>Vijayakumar, H. (2026). <em>UX in the Age of AI: Rethinking Evaluation Metrics Through a Statistical Lens</em>. arXiv:2605.05600.</li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- Barra inferior de navegación -->
+  <nav class="nav-bar" aria-label="Navegación de la presentación">
+    <button class="nav-btn" id="prevBtn" aria-label="Diapositiva anterior">‹</button>
+    <div class="progress" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <span class="counter" id="counter">1 / 18</span>
+    <button class="nav-btn" id="nextBtn" aria-label="Siguiente diapositiva">›</button>
+    <button class="nav-btn nav-full" id="fsBtn" aria-label="Pantalla completa" title="Pantalla completa (F)">⛶</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
