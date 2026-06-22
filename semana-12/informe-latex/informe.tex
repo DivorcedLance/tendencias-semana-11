@@ -1,0 +1,475 @@
+﻿\documentclass[12pt,a4paper,oneside]{article}
+
+% Paquetes esenciales
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+
+% Configuración de hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black,
+    pdftitle={Edge Computing e IIoT en Sistemas de Información},
+    pdfauthor={Grupo 3 - Tendencias en Sistemas de Información}
+}
+
+% Configuración de títulos
+\titleformat{\section}{\Large\bfseries\color{blue!70!black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{blue!60!black}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{blue!50!black}}{\thesubsubsection}{1em}{}
+
+% Encabezado y pie
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Edge Computing e IIoT en SI}
+\fancyhead[R]{\small Grupo 3}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Bibliografía
+\usepackage[backend=biber, style=ieee, sorting=ynt]{biblatex}
+\addbibresource{referencias.bib}
+
+% Espaciado
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% =============== PORTADA ===============
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\Huge\bfseries Edge Computing e\\[0.3cm] Internet de las Cosas Industrial\\[0.3cm] en Sistemas de Información\par}
+    \vspace{1.5cm}
+    {\Large\itshape Procesamiento en el borde y dispositivos IoT/IIoT para decisiones rápidas, automatización y monitoreo inteligente\par}
+    \vspace{2cm}
+    \rule{0.8\textwidth}{0.5pt}\\[0.5cm]
+    {\Large\bfseries Integrantes del Grupo N°3\par}
+    \vspace{0.5cm}
+    \begin{tabular}{l}
+        Martínez Fuentes, Kenny Uldarico Danny \\
+        Vergara Pachas, José Luis \\
+        Motta Chumbe, JeanPierre D'Angelo \\
+        Triveño Daza, Felipe Santiago \\
+        Guerrero Falla, Christian Angelo \\
+        Sernaqué Gutierrez, José Roberto \\
+    \end{tabular}
+    \rule{0.8\textwidth}{0.5pt}\\[1.5cm]
+    \begin{flushleft}
+        \textbf{CURSO:} \\
+        TENDENCIAS EN SISTEMAS DE INFORMACIÓN \\[0.5cm]
+        \textbf{DOCENTE:} \\
+        ANGULO CALDERÓN, CÉSAR AUGUSTO
+    \end{flushleft}
+    \vfill
+    {\Large Lima, Perú\\2026\par}
+\end{titlepage}
+
+% =============== ÍNDICE ===============
+\tableofcontents
+\newpage
+
+% =============== 1. RESUMEN EJECUTIVO ===============
+\section{Resumen Ejecutivo del Tema}
+
+El presente trabajo analiza la convergencia entre \textbf{Edge Computing} y el \textbf{Internet de las Cosas Industrial (IIoT)} como tendencias disruptivas que están transformando los Sistemas de Información (SI) empresariales modernos. Esta combinación, que suele denominarse \emph{Edge IoT} o \emph{computación en el borde industrial}, desplaza el procesamiento de datos desde la nube centralizada hacia el lugar donde los datos se generan ---en la planta, la fábrica, el vehículo autónomo o el sensor de campo---, lo que permite tomar decisiones en tiempo real, automatizar procesos físicos críticos y reducir drásticamente la latencia, el consumo de ancho de banda y la dependencia de conectividad permanente. En la actualidad, esta tendencia goza de alta relevancia porque habilita nuevos modelos de negocio como mantenimiento predictivo, fábricas autónomas, logística inteligente y ciudades conectadas, y porque es la base tecnológica de la \textbf{Industria 4.0} y de los Sistemas de Información Autónomos. Su relación con los SI se materializa en la captura masiva de datos operativos (telemetría de máquinas, condiciones ambientales, ubicación, energía) que se procesan y contextualizan en el borde antes de llegar a los ERP, MES, BI o plataformas analíticas corporativas. A lo largo del documento se examinan los fundamentos conceptuales y tecnológicos de Edge Computing e IIoT, su evolución histórica, los principales habilitadores (5G, MQTT, OPC UA, TSN, contenedores), su integración con los SI empresariales, beneficios, riesgos, marcos de ciberseguridad, desafíos y tendencias futuras, incluyendo la convergencia con IA generativa, gemelos digitales y computación cuántica.
+
+% =============== 2. PLANTEAMIENTO DEL PROBLEMA ===============
+\section{Planteamiento del Problema Organizacional}
+
+\subsection{Situación Actual}
+
+En la actualidad, las organizaciones que dependen de procesos físicos ---manufactura, energía, logística, salud, agricultura, smart cities--- enfrentan el reto de gestionar volúmenes de datos operativos que se generan a velocidades extremas (del orden de GB/s por planta) y que en su mayoría provienen de dispositivos distribuidos geográficamente. Los Sistemas de Información tradicionales, basados en arquitecturas centralizadas de cloud computing y analítica por lotes, son incapaces de procesar esta información con la latencia, la resiliencia y la autonomía requeridas para casos de uso como control de procesos, alertas críticas, robótica colaborativa o vehículos autónomos. A esto se suman problemas estructurales:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Latencia inaceptable:} la ida y vuelta a la nube introduce retardos de cientos de milisegundos, incompatibles con control en tiempo real.
+    \item \textbf{Costo y ancho de banda:} transmitir todo a la nube es económicamente inviable y consume redes corporativas.
+    \item \textbf{Dependencia de conectividad:} la caída de Internet detiene la operación; en plantas remotas o móviles la conectividad es intermitente.
+    \item \textbf{Privacidad y soberanía de datos:} datos industriales sensibles no pueden salir de la planta por razones regulatorias.
+    \item \textbf{Silos de información:} los datos operativos no llegan oportunamente al ERP/BI para la toma de decisiones empresariales.
+\end{itemize}
+
+\subsection{Problema Central}
+
+\begin{quote}
+\textit{¿Cómo pueden el Edge Computing y el Internet de las Cosas Industrial (IIoT) habilitar la captura, procesamiento y decisión en tiempo real dentro de los Sistemas de Información empresariales, superando las limitaciones de latencia, ancho de banda, resiliencia y soberanía de datos de las arquitecturas cloud tradicionales?}
+\end{quote}
+
+\subsection{Justificación}
+
+\subsubsection{Justificación Tecnológica}
+
+La innovación de esta tendencia se sustenta en la convergencia de varias tecnologías maduras: \textbf{procesadores de bajo consumo y alto rendimiento} (ARM, RISC-V, GPUs embebidas, TPUs de borde), \textbf{protocolos de comunicación industrial} (MQTT, OPC UA, AMQP, Modbus, PROFINET), \textbf{redes de baja latencia} (5G/6G, TSN, Wi-Fi 6/7, LoRaWAN), \textbf{contenedores y orquestación ligera} (Docker, K3s, KubeEdge, OpenYurt) y \textbf{frameworks de IA en el borde} (TensorFlow Lite, ONNX Runtime, OpenVINO). Esto permite desplegar capacidades de cómputo, almacenamiento y analítica directamente en el lugar donde se generan los datos, integrándolas de forma nativa con los SI empresariales.
+
+\subsubsection{Justificación Organizacional}
+
+A nivel operativo, el procesamiento en el borde reduce los tiempos de respuesta de segundos a milisegundos, permitiendo alertas en tiempo real, mantenimiento predictivo y control autónomo de procesos. Desde el punto de vista económico, disminuye los costos de transmisión y almacenamiento en la nube, optimiza el uso de la red y reduce la dependencia de proveedores hyperscaler. A nivel estratégico, abre nuevas oportunidades de negocio ---como servitización, suscripción a datos de telemetría, marketplaces de servicios industriales--- y habilita modelos operativos más resilientes y distribuidos.
+
+\subsubsection{Justificación Estratégica}
+
+Esta tendencia es un habilitador central de la \textbf{Industria 4.0}, la \textbf{transformación digital} y los \textbf{Sistemas de Información Autónomos}. Estratégicamente, las organizaciones que adoptan Edge + IIoT pueden diferenciarse por tiempos de respuesta, calidad de servicio, personalización y resiliencia operativa. Además, el dominio de estas tecnologías es una barrera de entrada alta, lo que crea ventajas competitivas sostenibles. Para el Perú y Latinoamérica, el Edge Computing e IIoT abren oportunidades concretas en sectores como minería, agroindustria, pesca, manufactura y energía, donde la conectividad limitada y la dispersión geográfica hacen inviable el modelo cloud-only.
+
+% =============== 3. OBJETIVOS ===============
+\section{Objetivos de la Investigación}
+
+\subsection{Objetivo General}
+
+Analizar el impacto de la convergencia entre Edge Computing e Internet de las Cosas Industrial (IIoT) en los Sistemas de Información empresariales, evaluando cómo habilitan la captura, procesamiento y decisión en tiempo real, la automatización industrial inteligente y la integración operativa con las plataformas corporativas (ERP, MES, BI), considerando beneficios, riesgos, marcos de ciberseguridad y tendencias futuras.
+
+\subsection{Objetivos Específicos}
+
+\begin{enumerate}[leftmargin=*]
+    \item Describir los fundamentos conceptuales y tecnológicos del Edge Computing y el IIoT, identificando su rol dentro de los Sistemas de Información modernos.
+    \item Identificar las principales aplicaciones de Edge + IIoT en SI empresariales: manufactura inteligente, mantenimiento predictivo, logística, energía, smart cities y salud.
+    \item Analizar un caso de uso organizacional real que documente la implementación de Edge Computing e IIoT en un entorno industrial.
+    \item Proponer una arquitectura tecnológica de referencia para la integración de Edge + IIoT con los SI empresariales (ERP, MES, BI, plataformas de datos).
+    \item Evaluar beneficios, riesgos, desafíos de ciberseguridad y tendencias futuras de la adopción de Edge Computing e IIoT en las organizaciones.
+\end{enumerate}
+
+% =============== 4. MARCO CONCEPTUAL Y TECNOLÓGICO ===============
+\section{Marco Conceptual y Tecnológico}
+
+\subsection{Definición de Edge Computing e IIoT}
+
+El \textbf{Edge Computing} (computación en el borde) es un paradigma de computación distribuida que lleva el procesamiento, almacenamiento y análisis de datos lo más cerca posible del lugar donde se generan, es decir, en el ``borde'' de la red, cerca de los dispositivos finales, sensores o usuarios. Reduce la latencia, el consumo de ancho de banda y la dependencia de la nube, y permite operar incluso en condiciones de conectividad limitada o nula \cite{nistSP800183}.
+
+El \textbf{Internet de las Cosas Industrial (IIoT, Industrial IoT)} es la aplicación del paradigma IoT a entornos industriales: una red de sensores, actuadores, controladores y dispositivos conectados que monitorean, recolectan y transmiten datos de procesos físicos (temperatura, presión, vibración, posición, energía) en plantas de manufactura, instalaciones energéticas, cadenas logísticas, infraestructura crítica, etc. A diferencia del IoT de consumo, el IIoT exige alta confiabilidad, baja latencia, ciberseguridad robusta y operación en tiempo real \cite{nistIR8259}.
+
+\subsection{Conceptos Relacionados}
+
+\subsubsection{Industria 4.0}
+
+La Industria 4.0 (término acuñado en Alemania en 2011) es la cuarta revolución industrial caracterizada por la convergencia de sistemas ciberfísicos, IoT/IIoT, computación en la nube y en el borde, Big Data, IA, robótica colaborativa, fabricación aditiva y gemelos digitales. El Edge Computing y el IIoT son pilares tecnológicos fundamentales de esta revolución.
+
+\subsubsection{Gemelos Digitales (Digital Twins)}
+
+Un gemelo digital es una réplica virtual en tiempo real de un activo, proceso o sistema físico, alimentada por datos de sensores (IIoT) y procesada en el borde o en la nube. Permite simular, predecir, monitorear y optimizar el comportamiento del objeto físico sin intervenirlo físicamente.
+
+\subsubsection{Redes de baja latencia (5G, TSN, 6G)}
+
+El 5G ofrece latencia del orden de 1--10 ms, con elevadas tasas de transferencia y comunicación masiva tipo-máquina (mMTC), habilitando casos de uso de IIoT móvil y de tiempo real. El TSN (Time-Sensitive Networking) garantiza entrega determinista sobre Ethernet industrial. El 6G promete latencia sub-milisegundo e integración nativa con IA distribuida.
+
+\subsubsection{Protocolos de comunicación industrial (MQTT, OPC UA)}
+
+\textbf{MQTT} (Message Queuing Telemetry Transport) es un protocolo de mensajería ligero, publish/subscribe, ideal para dispositivos IIoT con recursos limitados. \textbf{OPC UA} (Open Platform Communications Unified Architecture) es el estándar industrial de interoperabilidad máquina-a-máquina, con modelado semántico, seguridad de extremo a extremo e integración con SI.
+
+\subsubsection{Contenedores y orquestación ligera en el borde}
+
+Tecnologías como Docker, containerd, K3s (Kubernetes ligero), KubeEdge, OpenYurt, Baetyl y Linux MicroPlatform permiten desplegar y gestionar aplicaciones y servicios en dispositivos de borde con recursos limitados, facilitando el ciclo de vida DevOps en el edge.
+
+\subsubsection{IA en el borde (Edge AI)}
+
+Edge AI se refiere a la ejecución de modelos de inteligencia artificial (machine learning, deep learning, visión por computador, NLP) directamente en el borde, cerca de los datos, sin enviar la información a la nube. Permite inferencia en tiempo real con baja latencia, privacidad y ahorro de ancho de banda.
+
+\subsection{Componentes Tecnológicos de Edge + IIoT}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Sensores y actuadores:} temperatura, presión, vibración, flujo, GPS, acelerómetros, cámaras, LIDAR, etc.
+    \item \textbf{Gateways y dispositivos edge:} PLCs industriales, gateways IoT (Azure IoT Edge, AWS Greengrass), microcontroladores, SBCs (Raspberry Pi, NVIDIA Jetson).
+    \item \textbf{Conectividad:} 5G, Wi-Fi 6/7, LoRaWAN, Bluetooth LE, Ethernet industrial, PROFINET, EtherCAT, MQTT, OPC UA.
+    \item \textbf{Plataformas edge:} K3s, KubeEdge, Azure IoT Edge, AWS Greengrass, Baetyl.
+    \item \textbf{Procesamiento y analítica:} bases de datos de series de tiempo (InfluxDB, TimescaleDB), motores de reglas (Drools, OpenL Tablets), frameworks de ML (TensorFlow Lite, PyTorch Mobile, ONNX).
+    \item \textbf{Plataformas cloud de soporte:} Azure IoT Hub, AWS IoT Core, Google Cloud IoT, Siemens MindSphere, PTC ThingWorx, Bosch IoT Suite.
+    \item \textbf{Integración con SI:} conectores SAP IoT, Oracle IoT, middleware (Kafka, RabbitMQ), APIs REST/gRPC, OpenAPI.
+    \item \textbf{Seguridad:} TPM, Secure Boot, certificados X.509, cifrado TLS/DTLS, Zero Trust, gestión de identidades de dispositivo (DID).
+\end{itemize}
+
+\subsection{Diferencias entre Edge Computing + IIoT y Cloud Computing tradicional}
+
+\begin{table}[h!]
+\centering
+\caption{Comparación entre Edge + IIoT y Cloud Computing tradicional}
+\label{tab:comparacion}
+\begin{tabular}{p{4.5cm} p{5cm} p{5cm}}
+\toprule
+\textbf{Dimensión} & \textbf{Cloud Computing tradicional} & \textbf{Edge Computing + IIoT} \\
+\midrule
+Ubicación del cómputo & Centros de datos remotos & Cerca del dispositivo / sensor \\
+Latencia & 50--500 ms (ida y vuelta) & 1--10 ms (local) \\
+Ancho de banda & Alto (todo se transmite) & Bajo (solo se transmite lo relevante) \\
+Conectividad & Requerida continuamente & Puede operar offline \\
+Procesamiento de datos & Datos estructurados en DB & Series de tiempo, flujos, multimedia \\
+Privacidad / soberanía & Datos salen de la organización & Datos permanecen en la frontera \\
+Autonomía & Limitada por red & Funciona en condiciones adversas \\
+Escalabilidad & Elástica (ilimitada) & Acotada por recursos del dispositivo \\
+Costo por datos & Por uso de red y cómputo & Mayor en hardware, menor en operación \\
+Casos de uso típicos & BI, analytics batch, ML training & Control en tiempo real, alertas críticas, mantenimiento predictivo \\
+Riesgos & Ciberataques centralizados, vendor lock-in & Dispositivos físicos, ataques en cadena de suministro \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Nivel de Madurez Tecnológica de Edge + IIoT}
+
+De acuerdo con el NIST SP 800-183 \cite{nistSP800183}, las ``redes de cosas'' están transformando la interacción entre sensores, dispositivos y sistemas de información. El NIST IR 8259 \cite{nistIR8259} establece que la seguridad en IoT es ahora una prioridad crítica, y el NIST IR 8200 \cite{nistIR8200} enfatiza la necesidad de considerar el ciclo de vida completo de los dispositivos IoT (diseño, configuración, operación, retiro). A nivel industrial, los principales proveedores (Siemens, Bosch, Schneider Electric, GE Digital, ABB, Honeywell) ofrecen plataformas maduras de Edge + IIoT con conectividad estandarizada. En síntesis, la tendencia se encuentra en una fase de \textbf{adopción industrial acelerada y consolidación}, con una madurez comparable a la del cloud computing empresarial en 2015--2018.
+
+% =============== 5. EVOLUCIÓN ===============
+\section{Evolución de los Sistemas de Información hacia Edge + IIoT}
+
+\subsection{Sistemas Transaccionales (1960--1990)}
+
+La primera era de los SI estuvo dominada por sistemas transaccionales centralizados (ERP, CRM, SCM) que registraban operaciones de negocio en bases de datos relacionales. No había captura sistemática de datos físicos en tiempo real.
+
+\subsection{Sistemas Analíticos (1990--2010)}
+
+Aparecieron los Data Warehouse, BI y OLAP. Comenzó la \textbf{integración de datos operativos} mediante interfaces batch con sistemas SCADA, pero sin procesamiento en tiempo real.
+
+\subsection{Sistemas Inteligentes (2010--2020)}
+
+Surgen las plataformas IoT/IIoT comerciales (PTC ThingWorx, Siemens MindSphere, AWS IoT) y se introduce el \textbf{MQTT}, OPC UA, y los primeros gateways edge. El cómputo comienza a acercarse al dato con dispositivos como Raspberry Pi y gateways industriales.
+
+\subsection{Sistemas Generativos y Autónomos (2020--presente)}
+
+Con la maduración de 5G, Kubernetes ligero (K3s), contenedores y frameworks de IA optimizados (TensorFlow Lite, ONNX), emerge la era del \textbf{Edge AI}: el procesamiento de IA se realiza localmente, y los SI empresariales consumen datos pre-procesados, contextualizados y enriquecidos desde el borde, integrándose con gemelos digitales y RPA.
+
+\subsection{Sistemas Autónomos Cognitivos (futuro)}
+
+La próxima frontera son los \textbf{sistemas autónomos distribuidos} donde múltiples nodos edge colaboran de forma federada, aprenden de forma continua y toman decisiones coordinadas sin intervención humana, integrados con plataformas de IA generativa en la nube. Esta evolución se resume en la Tabla \ref{tab:evolucion}.
+
+\begin{table}[h!]
+\centering
+\caption{Línea evolutiva de los SI hacia Edge + IIoT}
+\label{tab:evolucion}
+\begin{tabular}{p{3.5cm} p{5cm} p{5cm}}
+\toprule
+\textbf{Etapa} & \textbf{Característica principal} & \textbf{Ejemplo} \\
+\midrule
+Transaccional & Registro centralizado de operaciones & ERP, CRM, SCM \\
+Analítico & Reportes batch e integración SCADA & BI, Data Warehouse \\
+Inteligente & Plataformas IoT/IIoT comerciales, gateways edge & ThingWorx, MindSphere, MQTT \\
+Edge AI y Generativo & Inferencia local de IA, contenedores en el borde & K3s, KubeEdge, TensorFlow Lite, 5G \\
+Autónomo Cognitivo & Federated learning, agentes edge, gemelos digitales & NVIDIA Isaac, EdgeX Foundry, IA generativa en el borde \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 6. ENFOQUE ESPECÍFICO ===============
+\section{Enfoque Específico: Edge Computing + IIoT en Sistemas de Información}
+
+Este apartado desarrolla el núcleo diferenciador del trabajo: cómo el Edge Computing y el IIoT se integran con los distintos sistemas que componen el ecosistema corporativo moderno.
+
+\subsection{Integración de Edge + IIoT con Sistemas ERP y MES}
+
+Los ERP (SAP S/4HANA, Oracle Fusion, Microsoft Dynamics 365) y los MES (Manufacturing Execution Systems) son los sistemas centrales de manufactura. La integración con Edge + IIoT permite:
+
+\begin{itemize}[leftmargin=*]
+    \item Captura automática de eventos de producción (tiempos de ciclo, paradas, calidad) directamente desde PLCs, sensores y SCADA vía OPC UA o MQTT.
+    \item Actualización en tiempo real de órdenes de producción, inventarios y consumos de materiales.
+    \item Trazabilidad de producto a nivel de unidad individual (gemelo digital por item).
+    \item Cálculo automático de OEE (Overall Equipment Effectiveness) y KPIs en el edge.
+\end{itemize}
+
+\subsection{Integración de Edge + IIoT con Sistemas SCM y Logística}
+
+La cadena de suministro (SCM) y la logística se benefician del IIoT con:
+
+\begin{itemize}[leftmargin=*]
+    \item Rastreo en tiempo real de activos (vehículos, contenedores, pallets) con GPS, RFID y BLE.
+    \item Monitoreo de condiciones (temperatura, humedad, vibración) para productos sensibles (alimentos, medicamentos).
+    \item Optimización dinámica de rutas basada en condiciones de tráfico, clima y disponibilidad de vehículos.
+    \item Gemelos digitales de la cadena de suministro para simular disrupciones.
+\end{itemize}
+
+\subsection{Integración de Edge + IIoT con Business Intelligence}
+
+El BI tradicional basado en datos batch se complementa con Edge + IIoT con:
+
+\begin{itemize}[leftmargin=*]
+    \item Dashboards en tiempo real alimentados por telemetría de planta.
+    \item Detección de anomalías y alertas automáticas vía Edge AI.
+    \item Analítica de streaming en plataformas como Apache Flink, Spark Streaming, KSQL.
+    \item Modelos predictivos de mantenimiento, calidad y consumo energético.
+\end{itemize}
+
+\subsection{Integración de Edge + IIoT con Sistemas de Mantenimiento}
+
+El mantenimiento industrial (preventivo, predictivo, prescriptivo) es uno de los casos de uso más maduros de IIoT + Edge:
+
+\begin{itemize}[leftmargin=*]
+    \item Monitoreo de vibración, temperatura, presión, ultrasonido en maquinaria rotativa.
+    \item Modelos de machine learning en el edge que predicen fallas horas o días antes.
+    \item Gemelos digitales de equipos que simulan escenarios de falla.
+    \item Integración con CMMS (Computerized Maintenance Management Systems) para generar órdenes de trabajo automáticamente.
+\end{itemize}
+
+\subsection{Integración de Edge + IIoT con Sistemas de Energía e Instalaciones}
+
+Los sistemas de gestión energética y de infraestructura crítica se benefician con:
+
+\begin{itemize}[leftmargin=*]
+    \item Smart meters y sensores en subestaciones, líneas, edificios.
+    \item Optimización en tiempo real del consumo energético en plantas y oficinas.
+    \item Detección temprana de fugas, fallos y eventos críticos.
+    \item Respuesta automática a la demanda en edificios inteligentes (BMS, HVAC).
+\end{itemize}
+
+\subsection{Integración de Edge + IIoT con Smart Cities y Salud}
+
+Fuera de la fábrica, Edge + IIoT habilita:
+
+\begin{itemize}[leftmargin=*]
+    \item Semáforos inteligentes, gestión de tráfico en tiempo real, monitoreo ambiental.
+    \item Dispositivos wearables, monitoreo de pacientes, telemedicina de baja latencia.
+    \item Sistemas de respuesta a emergencias (alertas tempranas de sismos, inundaciones).
+    \item Smart agriculture: sensores de suelo, clima, irrigación automatizada.
+\end{itemize}
+
+\subsection{Arquitectura de Referencia Edge + IIoT para SI Empresariales}
+
+La arquitectura general puede resumirse en cinco capas (ver Fig. \ref{fig:arquitectura}):
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Capa de campo / dispositivos:} sensores, actuadores, PLCs, robots, vehículos, maquinaria.
+    \item \textbf{Capa de gateway / edge:} gateways IoT, PLCs inteligentes, microcontroladores, SBCs con K3s/Docker.
+    \item \textbf{Capa de plataforma edge:} orquestación (K3s, KubeEdge), mensajería (MQTT, Kafka), bases de tiempo real, inferencia ML.
+    \item \textbf{Capa de plataforma cloud:} ingest, almacenamiento, analítica, ML training, gemelos digitales, integración con SI.
+    \item \textbf{Capa de aplicación y SI:} ERP, MES, BI, CRM, SCM, mantenimiento, energía; y aplicaciones de usuario.
+\end{enumerate}
+
+A través de todas las capas, la \textbf{ciberseguridad} (Zero Trust, cifrado extremo a extremo, gestión de identidades, OTA updates seguras) y la \textbf{gobernanza} (lineamientos NIST, ISO/IEC 27001, IEC 62443) son transversales.
+
+\begin{figure}[h!]
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering\vspace{0.5cm}\textit{[Diagrama de la arquitectura de 5 capas: Campo $\rightarrow$ Gateway/Edge $\rightarrow$ Plataforma Edge $\rightarrow$ Cloud $\rightarrow$ Aplicación/SI]}\vspace{0.5cm}}}
+\caption{Arquitectura de referencia Edge + IIoT para SI empresariales}
+\label{fig:arquitectura}
+\end{figure}
+
+% =============== 7. APLICACIONES EN SI ===============
+\section{Aplicaciones de Edge + IIoT en Sistemas de Información}
+
+De la matriz de aplicaciones posibles, el grupo selecciona las cinco más pertinentes al enfoque de la investigación (ver Tabla \ref{tab:aplicaciones}).
+
+\begin{table}[h!]
+\centering
+\caption{Aplicaciones seleccionadas de Edge + IIoT en SI}
+\label{tab:aplicaciones}
+\begin{tabular}{p{4cm} p{10cm}}
+\toprule
+\textbf{Área del SI} & \textbf{Aplicación} \\
+\midrule
+ERP / MES & Captura automática de eventos de producción desde PLCs, actualización en tiempo real de órdenes e inventarios. \\
+SCM / Logística & Rastreo en tiempo real de activos con GPS/RFID, monitoreo de condiciones, optimización dinámica de rutas. \\
+BI & Dashboards en tiempo real, detección de anomalías, analítica de streaming alimentada por telemetría. \\
+Mantenimiento & Monitoreo continuo de vibración/temperatura, mantenimiento predictivo con ML en el edge. \\
+Energía & Smart meters, optimización del consumo, respuesta automática a la demanda en edificios/plantas. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 8. BENEFICIOS ESPERADOS ===============
+\section{Beneficios Esperados}
+
+La integración de Edge + IIoT en los SI empresariales genera beneficios en múltiples dimensiones (ver Tabla \ref{tab:beneficios}).
+
+\begin{table}[h!]
+\centering
+\caption{Beneficios esperados de Edge + IIoT}
+\label{tab:beneficios}
+\begin{tabular}{p{3.5cm} p{11cm}}
+\toprule
+\textbf{Dimensión} & \textbf{Beneficios esperados} \\
+\midrule
+Estratégica & Habilitación de Industria 4.0, nuevos modelos de negocio (servitización), diferenciación competitiva por capacidad de respuesta en tiempo real. \\
+Operativa & Reducción de latencia (de cientos de ms a 1--10 ms), menor tiempo de inactividad, aumento de la OEE, decisiones autónomas en el edge. \\
+Tecnológica & Procesamiento distribuido, resiliencia operativa (funciona offline), escalabilidad horizontal en el borde, integración con gemelos digitales. \\
+Analítica & Analítica en tiempo real sobre datos de series de tiempo, mantenimiento predictivo basado en ML, detección temprana de anomalías. \\
+Económica & Reducción de costos de transmisión y almacenamiento en la nube, menor consumo de ancho de banda, optimización de inventarios y energía. \\
+Humana & Reducción de tareas peligrosas, alertas tempranas para seguridad ocupacional, mejora de la experiencia de operadores con información contextual. \\
+Institucional & Cumplimiento de normativas de soberanía de datos, trazabilidad operativa, resiliencia ante ciberataques. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 9. RIESGOS ===============
+\section{Riesgos, Desafíos y Limitaciones}
+
+Toda adopción de Edge + IIoT en entornos productivos debe gestionarse de manera proactiva. La Tabla \ref{tab:riesgos} sintetiza los principales riesgos y estrategias de mitigación, alineadas con marcos como el NIST IR 8259 \cite{nistIR8259}, el NIST IR 8200 \cite{nistIR8200} y el OWASP IoT Top 10 \cite{owaspIoT2018}.
+
+\begin{table}[h!]
+\centering
+\caption{Matriz de riesgos, desafíos y limitaciones}
+\label{tab:riesgos}
+\begin{tabular}{p{3.5cm} p{4.5cm} p{6.5cm}}
+\toprule
+\textbf{Riesgo} & \textbf{Descripción} & \textbf{Estrategia de mitigación} \\
+\midrule
+Dispositivos inseguros & Credenciales por defecto, firmware sin actualizar, vulnerabilidades de hardware. & Secure Boot, TPM, gestión de identidades, actualizaciones OTA firmadas \cite{nistIR8259}. \\
+Ataques a la cadena de suministro & Componentes comprometidos, falsificación de dispositivos. & Verificación de procedencia, SBOM, proveedores auditados. \\
+Ataques de red y denegación de servicio & Inyección de comandos, exploits remotos, ransomware industrial. & Segmentación de red, Zero Trust, IDS/IPS industrial, firewalls. \\
+Fuga y manipulación de datos & Datos de telemetría alterados, fuga de información operacional. & Cifrado TLS/DTLS extremo a extremo, integridad con hash y firma. \\
+Ataques físicos y manipulación de dispositivos & Acceso físico a gateways y PLCs en planta. & Endurecimiento de hardware, gabinetes con cerradura, detección de manipulación (tamper). \\
+Ataques de inyección y eavesdropping (MQTT/OPC UA) & Sniffing, falsificación de mensajes industriales. & mTLS, certificados por dispositivo, validación de esquemas. \\
+Interoperabilidad fragmentada & Múltiples protocolos, vendors y estándares propietarios. & Adopción de OPC UA, gateways de protocolo, plataformas iPaaS industriales. \\
+Gestión de dispositivos a escala & Miles o millones de dispositivos distribuidos geográficamente. & Plataformas de gestión de flotas (IoT Hub, Greengrass, IoT Core), OTA automatizado. \\
+Cumplimiento normativo & Restricciones de residencia de datos, certificaciones sectoriales. & Soberanía de datos, certificaciones IEC 62443, ISO 27001, GDPR. \\
+Talento especializado & Escasez de ingenieros de sistemas embebidos, OT, ciberseguridad industrial. & Capacitación, equipos mixtos IT/OT, partnerships con vendors. \\
+Costos iniciales & Hardware, conectividad, gateways, plataformas. & Evaluación costo-beneficio, ROI basado en OEE, modelos OPEX. \\
+Consumo energético en el edge & Procesamiento intensivo en sitios sin energía confiable. & Hardware de bajo consumo, energy harvesting, Edge AI optimizado \cite{sustainabilityEdge}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============== 10. TENDENCIAS FUTURAS ===============
+\section{Tendencias Futuras}
+
+En los próximos 3 a 5 años, la convergencia de Edge + IIoT evolucionará en varias direcciones clave:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Edge AI generativa:} modelos LLM multimodales pequeños y eficientes corriendo en el edge industrial (TinyLLM, modelos cuantizados) para mantenimiento, control y soporte a operadores.
+    \item \textbf{Gemelos digitales federados:} réplicas virtuales de planta, proceso o equipo, alimentadas y actualizadas en tiempo real por IIoT, con simulación predictiva en el edge.
+    \item \textbf{Federated learning industrial:} entrenamiento de modelos de IA en datos distribuidos de múltiples plantas sin compartir datos sensibles.
+    \item \textbf{6G y computación pervasiva:} latencia sub-milisegundo, integración nativa con IA distribuida, holographic communications para mantenimiento remoto.
+    \item \textbf{Edge AI sostenible:} edge computing energéticamente eficiente, modelos destilados, hardware neuromórfico, energy harvesting, métricas de carbono por inferencia.
+    \item \textbf{Robótica móvil autónoma y edge:} robots móviles (AMR) y vehículos autónomos industriales que ejecutan percepción y decisión en el edge.
+    \item \textbf{Plataformas industriales unificadas:} convergencia entre IT (SI empresariales) y OT (tecnología operacional) en plataformas híbridas con gemelos digitales y analítica unificada.
+    \item \textbf{Regulación de ciberseguridad industrial:} ampliación de IEC 62443, NIS2 europeo, Cyber Resilience Act; certificaciones obligatorias para dispositivos IoT.
+    \item \textbf{Integración con blockchain y zero trust:} identidad descentralizada de dispositivos, contratos inteligentes para gobernanza.
+    \item \textbf{Sostenibilidad y economía circular:} monitoreo IoT de huella de carbono, eficiencia energética y trazabilidad de materiales reciclados.
+\end{itemize}
+
+% =============== 11. CONCLUSIONES ===============
+\section{Conclusiones}
+
+\subsection{Conclusión Tecnológica}
+
+La tendencia analizada demuestra que el \textbf{Edge Computing y el IIoT permiten llevar la inteligencia al lugar donde los datos se generan}, habilitando procesamiento, decisión y acción en tiempo real con latencias del orden de milisegundos, resiliencia operativa offline y soberanía de datos. Esto se sustenta en la convergencia de hardware embebido potente, protocolos industriales abiertos (MQTT, OPC UA), redes de baja latencia (5G, TSN), contenedores ligeros (K3s) y frameworks de IA optimizados para el edge (TensorFlow Lite, ONNX). La integración con los SI empresariales se materializa en la captura de eventos operativos que alimentan ERP/MES/BI en tiempo real, transformando los datos en decisiones automatizadas.
+
+\subsection{Conclusión Organizacional}
+
+Su adopción \textbf{puede transformar las industrias de manufactura, energía, logística, salud y ciudades}, habilitando mantenimiento predictivo, control autónomo de procesos, optimización energética y trazabilidad operativa. El caso de Novate Solutions con IBM Maximo Monitor \cite{ibmNovate} confirma que es posible combinar IIoT e IA para detectar anomalías en tiempo real, logrando \textbf{30\% de mejora en calidad de producto} y \textbf{15\% de reducción de desperdicio} en procesos industriales, mientras se libera a los ingenieros de tareas de monitoreo 24/7.
+
+\subsection{Conclusión Crítica}
+
+Sin embargo, su implementación \textbf{requiere gestionar riesgos de ciberseguridad industrial} (dispositivos inseguros, ataques a la cadena de suministro, denegación de servicio, fuga de datos, manipulación física), \textbf{desafíos de interoperabilidad} entre múltiples protocolos y vendors, \textbf{talento especializado} en sistemas embebidos, OT/IT y ciberseguridad industrial, y \textbf{cumplimiento normativo} sectorial. La disciplina de \textbf{IIoT Security by Design} siguiendo marcos como el NIST IR 8259 \cite{nistIR8259}, NIST IR 8200 \cite{nistIR8200} y OWASP IoT Top 10 \cite{owaspIoT2018} resulta tan crítica como la selección del hardware y los algoritmos.
+
+\subsection{Conclusión Prospectiva}
+
+En los próximos años, esta tendencia evolucionará hacia \textbf{edge AI generativa, gemelos digitales federados, federated learning industrial, 6G, edge AI sostenible y plataformas IT/OT unificadas}, en las que los nodos edge serán agentes autónomos que aprenden, deciden y colaboran. La combinación de Edge + IIoT con IA generativa, blockchain y computación cuántica abrirá una nueva generación de \textbf{Sistemas de Información Autónomos, Inteligentes, Distribuidos y Sostenibles} en el corazón de la Industria 4.0 y 5.0.
+
+% =============== 12. REFERENCIAS ===============
+\section{Referencias Bibliográficas}
+
+\nocite{*}
+\printbibliography[title={Referencias}]
+
+\end{document}
